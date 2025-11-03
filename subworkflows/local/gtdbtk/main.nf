@@ -74,7 +74,6 @@ workflow GTDBTK {
         error("Unsupported object given to --gtdb, database must be supplied as either a directory or a .tar.gz file!")
     }
 
-    // We set unique to remove duplicate bins when the same bin has passed the filter of two different QC tools
     GTDBTK_CLASSIFYWF(
         ch_filtered_bins.passed.groupTuple(),
         ch_db_for_gtdbtk,
@@ -87,7 +86,7 @@ workflow GTDBTK {
         .count()
         .combine(ch_filtered_bins.discarded.count())
         .subscribe { passed, failed ->
-            if((passed + failed) > 0 && passed == 0) {
+            if ((passed + failed) > 0 && passed == 0) {
                 log.warn("No contigs passed GTDB-TK min. completeness filters. GTDB-TK summary will execute but results will be empty!")
             }
         }
