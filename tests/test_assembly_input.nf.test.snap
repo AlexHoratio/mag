@@ -42,7 +42,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-29T14:31:47.972004761"
+        "timestamp": "2025-11-03T13:09:25.823958732"
     },
     "assembly": {
         "content": [
@@ -58,10 +58,10 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.3",
+            "nf-test": "0.9.2",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-28T18:08:24.535119607"
+        "timestamp": "2025-11-03T13:09:25.820313196"
     },
     "-profile assembly_input": {
         "content": [
@@ -175,11 +175,10 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.3",
+            "nf-test": "0.9.2",
             "nextflow": "25.10.0"
         },
-<<<<<<< HEAD
-        "timestamp": "2025-10-28T18:08:24.507223197"
+        "timestamp": "2025-11-03T13:09:25.809909903"
     },
     "binning": {
         "content": [
@@ -547,7 +546,7 @@
                 "missing_busco_list.tsv:md5,c6807925eff74c7de1c1a38d88069b08",
                 "full_table.tsv:md5,877e4dad881ca7079c8b6118b59a34d4",
                 "missing_busco_list.tsv:md5,c7ee1e582e010aab60a566da7fe304de",
-                "bin_summary.tsv:md5,26621d2d20d68f52615e11685d673fbb",
+                "bin_summary.tsv:md5,60111a58bb0167ec1367f1e7463b7026",
                 "bin_depths_summary.tsv:md5,7153f759db72abb02e2ee3c2ab1b5e56"
             ]
         ],
@@ -555,12 +554,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-31T14:49:17.680142281"
-||||||| e5ebf2e5
-        "timestamp": "2025-09-21T21:09:48.262952969"
-=======
-        "timestamp": "2025-10-14T17:09:59.771951529"
->>>>>>> upstream/dev
+        "timestamp": "2025-11-03T13:09:25.851661808"
     },
     "multiqc": {
         "content": [
@@ -601,9 +595,9 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.3",
+            "nf-test": "0.9.2",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-28T18:08:24.999225595"
+        "timestamp": "2025-11-03T13:09:26.024757138"
     }
 }
