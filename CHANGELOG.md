@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [#896](https://github.com/nf-core/mag/pull/896) - Remove obsolete execution command from README (by @dialvarezs)
 - [#905](https://github.com/nf-core/mag/pull/905) - Fix publishing of BUSCO files (by @dialvarezs)
+- [#905](https://github.com/nf-core/mag/pull/905) - Guarantee consistent order of samples in depth files (by @dialvarezs)
 - [#907](https://github.com/nf-core/mag/pull/907) - Include refined bins from all binners in the `DASTool/bins` output folder (by @AlexHoratio)
 
 ### `Dependencies`
