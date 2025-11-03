@@ -9,7 +9,7 @@ workflow BINNING_METABINNER {
     ch_input // channel (mandatory): [ val(meta), path(fasta), path(depth) ] (fasta: raw contigs from assembly)
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     // produce k-mer composition table
     METABINNER_KMER(
