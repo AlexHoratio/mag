@@ -7,31 +7,39 @@ import sys
 import os
 from Bio import SeqIO
 
-binning = sys.argv[1]
-fasta = sys.argv[2]
-path = sys.argv[3]
-prefix = sys.argv[4]
-length = sys.argv[5]
+def main():
+    # Argument parsing
+    if len(sys.argv) != 6:
+        print("Usage: python create_metabinner_bins.py <binning_file> <fasta_file> <output_path> <prefix> <length_threshold>")
+        sys.exit(1)
 
-os.makedirs(path, exist_ok=True)
+    binning = sys.argv[1]
+    fasta = sys.argv[2]
+    path = sys.argv[3]
+    prefix = sys.argv[4]
+    length = int(sys.argv[5])
 
-Metabinner_bins = {}
-with open(binning, 'r') as b:
-    for line in b:
-        contig, bin = line.strip().split('\t')
-        Metabinner_bins[contig] = bin
+    # Create output directory if it doesn't exist
+    os.makedirs(path, exist_ok=True)
 
-for outf in set(Metabinner_bins.values()):
-    name = prefix + "." + outf + ".fa"
-    open(os.path.join(path, name), 'w')
+    # Load binning data into a dictionary
+    Metabinner_bins = {}
+    with open(binning, 'r') as b:
+        for line in b:
+            contig, bin = line.strip().split('\t')
+            Metabinner_bins[contig] = bin
 
-with open(fasta) as handle:
-    for record in SeqIO.parse(handle, "fasta"):
-        if len(record) < int(length):
-            f = prefix + ".tooShort.fa"
-        elif record.id not in Metabinner_bins:
-            f = prefix + ".unbinned.fa"
-        else:
-            f = prefix + "." + Metabinner_bins[record.id] + ".fa"
-        with open(os.path.join(path, f), 'a') as out:
-            SeqIO.write(record, out, "fasta")
+    # Process the input fasta file
+    with open(fasta) as handle:
+        for record in SeqIO.parse(handle, "fasta"):
+            if len(record) < length:
+                f = prefix + ".tooShort.fa"
+            elif record.id not in Metabinner_bins:
+                f = prefix + ".unbinned.fa"
+            else:
+                f = prefix + "." + Metabinner_bins[record.id] + ".fa"
+            with open(os.path.join(path, f), 'a') as out:
+                SeqIO.write(record, out, "fasta")
+
+if __name__ == "__main__":
+    main()
