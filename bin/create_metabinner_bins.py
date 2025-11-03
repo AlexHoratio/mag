@@ -13,10 +13,7 @@ path = sys.argv[3]
 prefix = sys.argv[4]
 length = sys.argv[5]
 
-try:
-    os.mkdir(path)
-except OSerror as error:
-    pass
+os.makedirs(path, exist_ok=True)
 
 Metabinner_bins = {}
 with open(binning, 'r') as b:
