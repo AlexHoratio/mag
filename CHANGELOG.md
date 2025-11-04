@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [#896](https://github.com/nf-core/mag/pull/896) - Remove obsolete execution command from README (by @dialvarezs)
 - [#907](https://github.com/nf-core/mag/pull/907) - Include refined bins from all binners in the `DASTool/bins` output folder (by @AlexHoratio)
 - [#911](https://github.com/nf-core/mag/pull/911) - Ensure column order is consistent when generating depth summaries to prevent swapped results on merged depth summary (by @dialvarezs)
+- [#912](https://github.com/nf-core/mag/pull/912) - Fix validation of multiple sequencing platforms when using `binning_map_mode = "all"` (reported by @mjfi2sb3, fix by @dialvarezs)
 
 ### `Dependencies`
 
