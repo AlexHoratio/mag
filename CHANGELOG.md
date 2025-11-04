@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### `Added`
 
 - [#842](https://github.com/nf-core/mag/pull/842) - Add support for running multiple binQC tools in one run using dedicated `--run_busco`, `--run_checkm`, and `--run_checkm2` parameters (by @harper357, with contributions from @dialvarezs, @prototaxites and @jfy133)
+- [#881](https://github.com/nf-core/mag/pull/881) - Add binner MetaBinner (by @d4straub, insprired by @HeshamAlmessady & @AlphaSquad)
 
 ### `Changed`
 
@@ -21,6 +22,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [#907](https://github.com/nf-core/mag/pull/907) - Include refined bins from all binners in the `DASTool/bins` output folder (by @AlexHoratio)
 - [#911](https://github.com/nf-core/mag/pull/911) - Ensure column order is consistent when generating depth summaries to prevent swapped results on merged depth summary (by @dialvarezs)
 - [#912](https://github.com/nf-core/mag/pull/912) - Fix validation of multiple sequencing platforms when using `binning_map_mode = "all"` (reported by @mjfi2sb3, fix by @dialvarezs)
+
+### `Dependencies`
+
+| Tool       | Previous version | New version |
+| ---------- | ---------------- | ----------- |
+| MetaBinner |                  | 1.4.4-0     |
 
 ### `Deprecated`
 
