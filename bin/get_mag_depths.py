@@ -29,7 +29,7 @@ def parse_args(args=None):
         required=True,
         metavar="FILE",
         help=(
-            "(Compressed) TSV file containing contig depths for each sample: contigName, contigLen, "
+            "Produces (compressed) TSV file containing contig depths for each sample: contigName, contigLen, "
             + "totalAvgDepth, sample1_avgDepth, sample1_var [, sample2_avgDepth, sample2_var, ...]."
         ),
     )
