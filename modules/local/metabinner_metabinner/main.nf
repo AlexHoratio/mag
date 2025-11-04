@@ -39,6 +39,9 @@ process METABINNER_METABINNER {
         -p \${metabinner_path} \\
         ${args}
 
+    # clean-up unzipped kmer file
+    rm kmer_profile.csv
+
     # collect & zip membership & log files
     gzip -cn ${prefix}/metabinner_res/metabinner_result.tsv > ${prefix}.tsv.gz
     gzip -cn ${prefix}/metabinner_res/result.log > ${prefix}.metabinner.log.gz
