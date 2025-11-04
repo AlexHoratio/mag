@@ -18,6 +18,7 @@ GenomeBinning/depths/bins/*.png
 GenomeBinning/MetaBAT2/unbinned/discarded/*.unbinned.pooled.fa.gz
 GenomeBinning/QC/CheckM2/**/DIAMOND_RESULTS.tsv
 GenomeBinning/QC/CheckM2/*/checkm2.log
+GenomeBinning/QC/busco_summary.tsv
 GenomeBinning/QC/BUSCO/**/*.log
 GenomeBinning/QC/BUSCO/**/.checkpoint
 GenomeBinning/QC/BUSCO/**/*.json
