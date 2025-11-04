@@ -250,7 +250,6 @@
                 "MEGAHIT-MetaBAT2-test_minigut.2.faa:md5,577adc1aa1ebd51fed46f726ad90d9b3",
                 "quality_report.tsv:md5,9365828b072487af69333ecb35353255",
                 "MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut_checkm2_report.tsv:md5,9365828b072487af69333ecb35353255",
-                "busco_summary.tsv:md5,f2108b2ad319f7bdbe1d42c185e34e43",
                 "checkm2_summary.tsv:md5,9365828b072487af69333ecb35353255",
                 "tiara_summary.tsv:md5,6f97d6016921205c7913e54850b52dad",
                 "bin_summary.tsv:md5,654c1d572f0709145cf87b5480007555",
