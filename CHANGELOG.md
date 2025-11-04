@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### `Fixed`
 
 - [#896](https://github.com/nf-core/mag/pull/896) - Remove obsolete execution command from README (by @dialvarezs)
+- [#907](https://github.com/nf-core/mag/pull/907) - Include refined bins from all binners in the `DASTool/bins` output folder (by @AlexHoratio)
+- [#911](https://github.com/nf-core/mag/pull/911) - Ensure column order is consistent when generating depth summaries to prevent swapped results on merged depth summary (by @dialvarezs)
 
 ### `Dependencies`
 
@@ -28,12 +30,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### `Added`
 
 - [#873](https://github.com/nf-core/mag/pull/873) - Document usage of `longread_percentidentity` and `shortread_percentidentity` and set the value of `longread_percentidentity` in the `test_full` profile to 85 (by @prototaxites)
+- [#842](https://github.com/nf-core/mag/pull/842) - Add support for running multiple binQC tools in one run using dedicated `--run_busco`, `--run_checkm`, and `--run_checkm2` parameters (by @harper357, with contributions from @dialvarezs, @prototaxites and @jfy133)
 - [#875](https://github.com/nf-core/mag/pull/875) - Add binner COMEBin (by @d4straub)
 
 ### `Changed`
 
 - [#878](https://github.com/nf-core/mag/pull/878) - Refine test_full config with optimised resource usage for AWS release megatests (by @jfy133)
 - [#880](https://github.com/nf-core/mag/pull/880) - Updated to nf-core 3.4.1 `TEMPLATE` (by @jfy133)
+- [#842](https://github.com/nf-core/mag/pull/842) - Change `bin_summary.tsv` format for improved clarity and more comprehensiveness (by @harper357, with contributions from @dialvarezs, @prototaxites and @jfy133)
+  - Now will include columns from all bin QC tools executed in a given run (i.e., all/any of BUSCO, CheckM and CheckM2)
+  - Adds suffixes to all columns (`_<toolname>`) to distinguish which column comes from which tool
 
 ### `Fixed`
 
@@ -49,6 +55,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 | COMEBin |                  | 1.0.4       |
 
 ### `Deprecated`
+
+- [#842](https://github.com/nf-core/mag/pull/842) - Remove `--binqc_tool` (by @harper357, with contributions from @dialvarezs, @prototaxites and @jfy133)
 
 ## 5.0.0 - [2025-09-30]
 
