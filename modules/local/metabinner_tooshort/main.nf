@@ -9,6 +9,7 @@ process METABINNER_TOOSHORT {
 
     input:
     tuple val(meta), path(fasta)
+    val val_min_contig_size
 
     output:
     tuple val(meta), path("*.${min_contig_size}.fa") , emit: sizefiltered
@@ -16,7 +17,7 @@ process METABINNER_TOOSHORT {
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
-    min_contig_size = task.ext.min_contig_size ?: "1000"
+    min_contig_size = val_min_contig_size ?: "1000"
     def VERSION = '1.4.4-0' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
     """
     metabinner_path=\$(dirname \$(which run_metabinner.sh))

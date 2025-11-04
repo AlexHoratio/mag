@@ -9,6 +9,7 @@ process METABINNER_METABINNER {
 
     input:
     tuple val(meta), path(fasta), path(kmer), path(depth)
+    val val_min_contig_size
 
     output:
     tuple val(meta), path("*.tsv.gz") , emit: membership
@@ -18,7 +19,7 @@ process METABINNER_METABINNER {
     script:
     def args   = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def min_contig_size = task.ext.min_contig_size ?: "1000"
+    def min_contig_size = val_min_contig_size ?: "1000"
     def VERSION = '1.4.4-0' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
     """
     # unzip kmer file

@@ -16,7 +16,8 @@ workflow BINNING_METABINNER {
         ch_input
             .map { meta, assembly, depths ->
                 [meta, assembly]
-            }
+            },
+        params.min_contig_size
     )
     ch_versions = ch_versions.mix(METABINNER_KMER.out.versions)
 
@@ -25,7 +26,8 @@ workflow BINNING_METABINNER {
         ch_input
             .map { meta, assembly, depths ->
                 [meta, assembly]
-            }
+            },
+        params.min_contig_size
     )
     ch_versions = ch_versions.mix(METABINNER_TOOSHORT.out.versions)
 
@@ -34,13 +36,14 @@ workflow BINNING_METABINNER {
         METABINNER_TOOSHORT.out.sizefiltered
         .join(METABINNER_KMER.out.composition_profile)
         .join(ch_input.map { meta, assembly, depths -> [meta, depths] } )
-    METABINNER_METABINNER(ch_metabinner_input)
+    METABINNER_METABINNER(ch_metabinner_input, params.min_contig_size)
     ch_versions = ch_versions.mix(METABINNER_METABINNER.out.versions)
 
     // extract bin sequences
     METABINNER_BINS(
         ch_input.map { meta, assembly, depths -> [meta, assembly] }
-            .join(METABINNER_METABINNER.out.membership)
+            .join(METABINNER_METABINNER.out.membership),
+        params.min_contig_size
     )
     ch_versions = ch_versions.mix(METABINNER_BINS.out.versions)
 
