@@ -97,10 +97,10 @@
                     "freebayes": "1.3.10"
                 },
                 "GENOMAD_DOWNLOAD": {
-                    "genomad": "1.11.0"
+                    "genomad": "1.11.1"
                 },
                 "GENOMAD_ENDTOEND": {
-                    "genomad": "1.11.0"
+                    "genomad": "1.11.1"
                 },
                 "GTDBTK_CLASSIFYWF": {
                     "gtdbtk": "2.5.2",
@@ -180,7 +180,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-04T09:00:45.832582615"
+        "timestamp": "2025-11-05T22:26:03.841320596"
     },
     "multiqc": {
         "content": [
