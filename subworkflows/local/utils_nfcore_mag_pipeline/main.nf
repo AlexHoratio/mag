@@ -126,17 +126,19 @@ workflow PIPELINE_INITIALISATION {
         ch_samplesheet
             .map { meta, _sr1, _sr2, _lr -> meta.sr_platform }
             .unique()
-            .collect {
-                if (it.size() > 1) {
-                    error("[nf-core/mag] ERROR: Multiple short read sequencing platforms found in samplesheet. Use same platform for all samples when running with binning_map_mode 'all'.")
+            .toList()
+            .map { platforms ->
+                if (platforms.size() > 1) {
+                    error("[nf-core/mag] ERROR: Multiple short read sequencing platforms (${platforms.join(", ")}) found in samplesheet. Use same platform for all samples when running with binning_map_mode 'all'.")
                 }
             }
         ch_samplesheet
             .map { meta, _sr1, _sr2, _lr -> meta.lr_platform }
             .unique()
-            .collect {
-                if (it.size() > 1) {
-                    error("[nf-core/mag] ERROR: Multiple long read sequencing platforms found in samplesheet. Use same platform for all samples when running with binning_map_mode 'all'.")
+            .toList()
+            .map { platforms ->
+                if (platforms.size() > 1) {
+                    error("[nf-core/mag] ERROR: Multiple long read sequencing platforms (${platforms.join(", ")}) found in samplesheet. Use same platform for all samples when running with binning_map_mode 'all'.")
                 }
             }
     }
