@@ -360,13 +360,6 @@ def validateInputParameters(hybrid) {
         error("[nf-core/mag] ERROR: Both --skip_binqc and --run_<bin_qc_tool_name> are specified! Invalid combination, please specify either --skip_binqc or --run_<bin_qc_tool_name>.")
     }
 
-    // Check if BUSCO parameters combinations are valid
-    if (params.skip_binqc) {
-        if (params.run_busco) {
-            error("[nf-core/mag] ERROR: Both --skip_binqc and --run_busco specified! Invalid combination, please specify either --skip_binqc or --run_busco with --busco_db.")
-        }
-    }
-
     if (!params.skip_binqc && params.run_busco) {
         if (params.busco_db && !params.busco_db_lineage) {
             log.warn('[nf-core/mag]: WARNING: You have supplied a database to --busco_db - BUSCO will run in offline mode. Please note that BUSCO may fail if you have an incomplete database and are running with --busco_db_lineage auto!')
