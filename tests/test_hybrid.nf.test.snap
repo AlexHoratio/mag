@@ -135,7 +135,7 @@
                     "pandas": "1.1.5"
                 },
                 "Workflow": {
-                    "nf-core/mag": "v5.2.0"
+                    "nf-core/mag": "v5.3.0dev"
                 }
             }
         ],
@@ -143,7 +143,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-04T08:43:07.241387365"
+        "timestamp": "2025-11-07T11:49:39.636194727"
     },
     "multiqc": {
         "content": [
