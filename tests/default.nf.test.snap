@@ -44,7 +44,7 @@
                 "CAT_FASTQ": {
                     "cat": 9.5
                 },
-                "CONCAT_BINQC_TSV": {
+                "CONCAT_BUSCO_TSV": {
                     "csvtk": "0.31.0"
                 },
                 "CONVERT_DEPTHS": {
@@ -134,15 +134,15 @@
                     "pandas": "1.1.5"
                 },
                 "Workflow": {
-                    "nf-core/mag": "v5.1.0"
+                    "nf-core/mag": "v5.2.0"
                 }
             }
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.04.8"
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-17T09:46:35.794435668"
+        "timestamp": "2025-11-04T07:53:29.134212676"
     },
     "multiqc": {
         "content": [
