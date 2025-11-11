@@ -72,6 +72,7 @@ nextflow_pipeline {
             def dastool_unbins = getAllFilesFromDir(
                 params.outdir, include: ['GenomeBinning/DASTool/unbinned/*.fa']
             )
+            def busco_summary = "${params.outdir}/GenomeBinning/QC/busco_summary.tsv"
 
             // Output directory: multiqc
             def stable_name_multiqc = getAllFilesFromDir(
@@ -102,6 +103,9 @@ nextflow_pipeline {
                 { assert metabat2_unbins.collect { file -> path("${file}").fasta.size() >= 0 }.every() },
                 { assert dastool_bins.collect { file -> path("${file}").fasta.size() > 0 }.every() },
                 { assert dastool_unbins.collect { file -> path("${file}").fasta.size() >= 0 }.every() },
+
+                // CSV checks
+                { assert path(busco_summary).csv(sep: "\t").rowCount == 4 },
 
                 // Log checks
                 { assert bowtie2_logs.collect {
