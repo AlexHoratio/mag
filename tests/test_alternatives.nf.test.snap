@@ -9,7 +9,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-03T13:30:35.827121721"
+        "timestamp": "2025-11-06T10:43:55.704960819"
     },
     "-profile test_alternatives": {
         "content": [
@@ -103,7 +103,7 @@
                     "trimmomatic": 0.39
                 },
                 "Workflow": {
-                    "nf-core/mag": "v5.2.0dev"
+                    "nf-core/mag": "v5.3.0dev"
                 },
                 "r-base": "4.1.3",
                 "r-tidyverse": "1.3.1"
@@ -113,7 +113,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-03T13:30:34.984712054"
+        "timestamp": "2025-11-07T11:50:38.41461775"
     },
     "qc": {
         "content": [
@@ -140,7 +140,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-03T13:30:34.992894204"
+        "timestamp": "2025-11-06T10:43:54.445183941"
     },
     "assembly": {
         "content": [
@@ -163,7 +163,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-03T13:30:35.014799383"
+        "timestamp": "2025-11-06T10:43:54.492525519"
     },
     "binning": {
         "content": [
@@ -178,44 +178,44 @@
                 "GenomeBinning/MetaBAT2/unbinned/discarded/MEGAHIT-MetaBAT2-test_minigut.unbinned.remaining.fa.gz",
                 "GenomeBinning/MetaBAT2/unbinned/discarded/MEGAHIT-MetaBAT2-test_minigut_sample2.unbinned.pooled.fa.gz",
                 "GenomeBinning/MetaBAT2/unbinned/discarded/MEGAHIT-MetaBAT2-test_minigut_sample2.unbinned.remaining.fa.gz",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/short_summary.specific.bacteria_odb12.MEGAHIT-MetaBAT2-test_minigut.1.fa.json",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/short_summary.specific.bacteria_odb12.MEGAHIT-MetaBAT2-test_minigut.1.fa.txt",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/short_summary.specific.bacteria_odb12.MEGAHIT-MetaBAT2-test_minigut.2.fa.json",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/short_summary.specific.bacteria_odb12.MEGAHIT-MetaBAT2-test_minigut.2.fa.txt",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco.batch_summary.txt",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/bbtools_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/bbtools_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/hmmsearch_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/hmmsearch_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/miniprot_align_eukaryota_odb12_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/miniprot_align_eukaryota_odb12_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/miniprot_index_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/miniprot_index_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/prodigal_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/prodigal_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/sepp_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/sepp_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/prodigal_output/.checkpoint",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/prodigal_output/predicted_genes/predicted.faa",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/prodigal_output/predicted_genes/predicted.fna",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/tmp/refseq_db.faa",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/bbtools_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/bbtools_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/hmmsearch_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/hmmsearch_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/miniprot_align_eukaryota_odb12_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/miniprot_align_eukaryota_odb12_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/miniprot_index_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/miniprot_index_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/prodigal_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/prodigal_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/sepp_err.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/sepp_out.log",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/prodigal_output/.checkpoint",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/prodigal_output/predicted_genes/predicted.faa",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/prodigal_output/predicted_genes/predicted.fna",
-                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/tmp/refseq_db.faa",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/short_summary.specific.bacteria_odb12.MEGAHIT-MetaBAT2-test_minigut.1.fa.json",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/short_summary.specific.bacteria_odb12.MEGAHIT-MetaBAT2-test_minigut.1.fa.txt",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/short_summary.specific.bacteria_odb12.MEGAHIT-MetaBAT2-test_minigut.2.fa.json",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/short_summary.specific.bacteria_odb12.MEGAHIT-MetaBAT2-test_minigut.2.fa.txt",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco.batch_summary.txt",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/bbtools_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/bbtools_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/hmmsearch_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/hmmsearch_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/miniprot_align_eukaryota_odb12_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/miniprot_align_eukaryota_odb12_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/miniprot_index_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/miniprot_index_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/prodigal_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/prodigal_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/sepp_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/logs/sepp_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/prodigal_output/.checkpoint",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/prodigal_output/predicted_genes/predicted.faa",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/prodigal_output/predicted_genes/predicted.fna",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.1.fa/tmp/refseq_db.faa",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/bbtools_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/bbtools_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/hmmsearch_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/hmmsearch_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/miniprot_align_eukaryota_odb12_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/miniprot_align_eukaryota_odb12_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/miniprot_index_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/miniprot_index_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/prodigal_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/prodigal_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/sepp_err.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/logs/sepp_out.log",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/prodigal_output/.checkpoint",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/prodigal_output/predicted_genes/predicted.faa",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/prodigal_output/predicted_genes/predicted.fna",
+                "GenomeBinning/QC/BUSCO/MEGAHIT-MetaBAT2-test_minigut/test_minigut-auto-busco/MEGAHIT-MetaBAT2-test_minigut.2.fa/tmp/refseq_db.faa",
                 "GenomeBinning/QC/CheckM2/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/checkm2.log",
                 "GenomeBinning/QC/CheckM2/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/diamond_output/DIAMOND_RESULTS.tsv",
                 "GenomeBinning/QC/CheckM2/MEGAHIT-MetaBAT2-prokarya-unrefined-test_minigut/protein_files/MEGAHIT-MetaBAT2-test_minigut.1.faa",
@@ -256,7 +256,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-03T13:30:35.052273037"
+        "timestamp": "2025-11-06T10:43:54.81496257"
     },
     "multiqc": {
         "content": [
@@ -414,6 +414,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-03T13:30:35.438282193"
+        "timestamp": "2025-11-06T10:43:55.256175449"
     }
 }

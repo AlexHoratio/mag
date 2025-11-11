@@ -437,7 +437,8 @@ Files in these two folders contain all contigs of an assembly.
   - `stats/[assembler]-[binner]-[sample/group]_*.tsv`: Coverage statistics of each sub-contig cut up by CONCOCT prior in an intermediate step prior to binning. Likely not useful in most cases.
   - `stats/[assembler]-[binner]-[sample/group].log.txt`: CONCOCT execution log file.
   - `stats/[assembler]-[binner]-[sample/group]_*.args`: List of arguments used in CONCOCT execution.
-  - </details>
+
+</details>
 
 All the files and contigs in these folders will be assessed by QUAST and BUSCO, if the parameter `--postbinning_input` is not set to `refined_bins_only`.
 
@@ -456,11 +457,30 @@ Note that CONCOCT does not output what it considers 'unbinned' contigs, therefor
   - `stats/[assembler]-[binner]-[sample/group]/comebin_res.tsv`: TSV mapping the output clusters to contigs.
   - `stats/[assembler]-[binner]-[sample/group]/covembeddings.tsv`: TSV describing the embeddings of the contigs.
   - `stats/[assembler]-[binner]-[sample/group]/embeddings.tsv`: TSV describing the embeddings of the contigs.
-  - </details>
+
+</details>
 
 All the files and contigs in these folders will be assessed by QUAST and BUSCO, if the parameter `--postbinning_input` is not set to `refined_bins_only`.
 
 Note that COMEBin does not output what it considers 'unbinned' contigs, therefore no 'discarded' contigs are produced here. You may still need to do your own manual curation of the resulting bins.
+
+### MetaBinner
+
+[MetaBinner](https://github.com/ziyewang/MetaBinner) is described as a high-performance and stand-alone ensemble binning method to recover individual genomes from complex microbial communities.
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `GenomeBinning/MetaBinner/`
+  - `bins/[assembler]-[binner]-[sample/group].*.fa.gz`: Genome bins retrieved from input assembly.
+  - `discarded/[assembler]-[binner]-[sample/group].tooShort.fa.gz`: Contigs that were not considered for binning because of length.
+  - `unbinned/[assembler]-[binner]-[sample/group].unbinned.fa.gz`: Contigs that were not binned despite having suitable length.
+  - `stats/[assembler]-[binner]-[sample/group].metabinner.log.gz`: Log file.
+  - `stats/[assembler]-[binner]-[sample/group].tsv.gz`: TSV mapping the contigs to output clusters.
+
+</details>
+
+All the files and contigs in these folders will be assessed by QUAST and binning QC tools, if the parameter `--postbinning_input` is not set to `refined_bins_only`.
 
 ### DAS Tool
 
@@ -556,7 +576,7 @@ If a lineage dataset is specified already with `--busco_db`, only results for th
 <details markdown="1">
 <summary>Output files</summary>
 
-- `GenomeBinning/QC/BUSCO/[sample/group]/`
+- `GenomeBinning/QC/BUSCO/[assembler]-[binner]-[sample/group]/`
   - `[sample/group]-[lineage]-busco.batch_summary.txt`: Summary table of the BUSCO results for the bins in the sample.
   - `short_summary.generic.[lineage].[assembler]-[bin].{txt,json}`: A detailed BUSCO summary for each bin, available in both plain text and JSON format.
   - `[sample/group]-[lineage]-busco.log`: Log file of the BUSCO run.
