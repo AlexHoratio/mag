@@ -10,7 +10,7 @@ nextflow_pipeline {
 
         when {
             params {
-                outdir = "$outputDir"
+                outdir = "${outputDir}"
             }
         }
 
@@ -105,6 +105,7 @@ nextflow_pipeline {
 
                 // CSV checks
                 { assert path(bin_summary).csv(sep: "\t").rowCount > 0 },
+                { assert path(bin_summary).csv(sep: "\t").rowCount == dastool_bins.size() },
                 { assert path(busco_summary).csv(sep: "\t").rowCount > 0 },
                 { assert snapshot(
                     path(bin_summary).csv(sep: "\t").rowCount,
