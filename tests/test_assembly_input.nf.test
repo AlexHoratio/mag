@@ -86,9 +86,7 @@ nextflow_pipeline {
             assert workflow.success
             assertAll(
                 { assert snapshot(
-                    // Number of successful tasks
                     workflow.trace.succeeded().size(),
-                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
                     removeNextflowVersion("${outputDir}/pipeline_info/nf_core_mag_software_mqc_versions.yml"),
                 ).match() },
                 { assert snapshot(stable_name_assembly).match('assembly') },
