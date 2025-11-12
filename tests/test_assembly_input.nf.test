@@ -73,6 +73,7 @@ nextflow_pipeline {
                 params.outdir, include: ['GenomeBinning/DASTool/unbinned/*.fa']
             )
             def busco_summary = "${params.outdir}/GenomeBinning/QC/busco_summary.tsv"
+            def bin_summary = "${params.outdir}/GenomeBinning/bin_summary.tsv"
 
             // Output directory: multiqc
             def stable_name_multiqc = getAllFilesFromDir(
@@ -106,6 +107,7 @@ nextflow_pipeline {
 
                 // CSV checks
                 { assert path(busco_summary).csv(sep: "\t").rowCount == 4 },
+                { assert path(bin_summary).csv(sep: "\t").rowCount == 4 },
 
                 // Log checks
                 { assert bowtie2_logs.collect {
