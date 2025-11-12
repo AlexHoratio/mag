@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Fixed`
 
+- [#927](https://github.com/nf-core/mag/pull/927) - MetaBinner now succeeds when no contigs are too short or all are binned (by @d4straub)
+
 ### `Dependencies`
 
 | Tool | Previous version | New version |
