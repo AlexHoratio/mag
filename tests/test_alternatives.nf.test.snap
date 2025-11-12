@@ -16,13 +16,13 @@
             43,
             {
                 "BIN_SUMMARY": {
-                    "python": "3.10.6",
-                    "pandas": "1.4.3"
+                    "pandas": "1.4.3",
+                    "python": "3.10.6"
                 },
                 "BOWTIE2_ASSEMBLY_ALIGN": {
                     "bowtie2": "2.4.2",
-                    "samtools": 1.11,
-                    "pigz": "2.3.4"
+                    "pigz": "2.3.4",
+                    "samtools": 1.11
                 },
                 "BOWTIE2_ASSEMBLY_BUILD": {
                     "bowtie2": "2.4.2"
@@ -64,17 +64,17 @@
                     "gunzip": 1.13
                 },
                 "MAG_DEPTHS": {
-                    "python": "3.6.7",
-                    "pandas": "1.1.5"
+                    "pandas": "1.1.5",
+                    "python": "3.6.7"
                 },
                 "MAG_DEPTHS_PLOT": {
-                    "python": "3.9.6",
                     "pandas": "1.3.0",
+                    "python": "3.9.6",
                     "seaborn": "0.11.0"
                 },
                 "MAG_DEPTHS_SUMMARY": {
-                    "python": "3.10.6",
-                    "pandas": "1.4.3"
+                    "pandas": "1.4.3",
+                    "python": "3.10.6"
                 },
                 "MEGAHIT": {
                     "megahit": "1.2.9"
@@ -89,9 +89,13 @@
                     "seqkit": "2.9.0"
                 },
                 "SPLIT_FASTA": {
-                    "python": "3.6.7",
                     "biopython": "1.7.4",
-                    "pandas": "1.1.5"
+                    "pandas": "1.1.5",
+                    "python": "3.6.7"
+                },
+                "TIARA_CLASSIFY": {
+                    "r-base": "4.1.3",
+                    "r-tidyverse": "1.3.1"
                 },
                 "TIARA_SUMMARY": {
                     "csvtk": "0.31.0"
@@ -104,16 +108,14 @@
                 },
                 "Workflow": {
                     "nf-core/mag": "v5.3.0dev"
-                },
-                "r-base": "4.1.3",
-                "r-tidyverse": "1.3.1"
+                }
             }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-07T11:50:38.41461775"
+        "timestamp": "2025-11-12T08:15:35.162392538"
     },
     "qc": {
         "content": [
@@ -240,11 +242,7 @@
                 "MEGAHIT-MetaBAT2-test_minigut_sample2.tooShort.fa.gz:md5,f9479e7fb34586a2892cd7bc323d414a",
                 "MEGAHIT-MetaBAT2-test_minigut.unbinned.remaining.fa.gz:md5,7ac001a38113812061f8ef5c94e3f579",
                 "MEGAHIT-MetaBAT2-test_minigut_sample2.unbinned.remaining.fa.gz:md5,e1a969d6e292e10a81ef4236907984a9",
-                "predicted.faa:md5,8e0d0014fb0a1e56fa8b8f47e20f2bcf",
-                "predicted.fna:md5,e4dc769d029b05cfe724cfa5ef214f10",
                 "refseq_db.faa:md5,0d53f0a1964cc202e99f4851839273a3",
-                "predicted.faa:md5,5e5160a0e0af28ccccd6459e887269ee",
-                "predicted.fna:md5,df236064ad2e0c699c029a89a6267bcf",
                 "refseq_db.faa:md5,0d53f0a1964cc202e99f4851839273a3",
                 "MEGAHIT-MetaBAT2-test_minigut.1.faa:md5,ba436cbba64ce111f228da1e2daac642",
                 "MEGAHIT-MetaBAT2-test_minigut.2.faa:md5,577adc1aa1ebd51fed46f726ad90d9b3",
