@@ -89,7 +89,7 @@ nextflow_pipeline {
                     // Number of successful tasks
                     workflow.trace.succeeded().size(),
                     // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
-                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_mag_software_mqc_versions.yml"),
+                    removeNextflowVersion("${outputDir}/pipeline_info/nf_core_mag_software_mqc_versions.yml"),
                 ).match() },
                 { assert snapshot(stable_name_assembly).match('assembly') },
                 { assert snapshot(stable_name_annotation, stable_path_annotation).match('annotation') },
@@ -106,8 +106,12 @@ nextflow_pipeline {
                 { assert dastool_unbins.collect { file -> path("${file}").fasta.size() >= 0 }.every() },
 
                 // CSV checks
-                { assert path(busco_summary).csv(sep: "\t").rowCount == 4 },
-                { assert path(bin_summary).csv(sep: "\t").rowCount == 4 },
+                { assert path(bin_summary).csv(sep: "\t").rowCount > 0 },
+                { assert path(busco_summary).csv(sep: "\t").rowCount > 0 },
+                { assert snapshot(
+                    path(bin_summary).csv(sep: "\t").rowCount,
+                    path(busco_summary).csv(sep: "\t").rowCount,
+                ).match("csv-rows") },
 
                 // Log checks
                 { assert bowtie2_logs.collect {

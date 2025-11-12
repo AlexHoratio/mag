@@ -72,13 +72,12 @@ nextflow_pipeline {
                 params.outdir, include: ['multiqc/**'], ignoreFile: 'tests/.nftignore'
             )
 
+            assert workflow.success
             assertAll(
-                { assert workflow.success },
                 { assert snapshot(
-                        workflow.trace.succeeded().size(),
-                        removeNextflowVersion("${outputDir}/pipeline_info/nf_core_mag_software_mqc_versions.yml"),
-                    ).match()
-                },
+                    workflow.trace.succeeded().size(),
+                    removeNextflowVersion("${outputDir}/pipeline_info/nf_core_mag_software_mqc_versions.yml"),
+                ).match() },
                 { assert snapshot(stable_name_qc,       stable_path_qc      ).match('qc') },
                 { assert snapshot(stable_name_assembly, stable_path_assembly).match('assembly') },
                 { assert snapshot(stable_name_binning,  stable_path_binning ).match('binning') },
