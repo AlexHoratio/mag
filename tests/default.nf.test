@@ -5,6 +5,8 @@ nextflow_pipeline {
     tag "pipeline"
     tag "test"
 
+    // trigger ci
+
     test("-profile test") {
 
         when {
