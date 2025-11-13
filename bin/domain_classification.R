@@ -53,7 +53,7 @@ classify_bins <- function(tiara, contig2bin, join_prokaryotes){
     ## Make sure that we drop everything after a possible space before doing anything else to allow merging
     tiara$sequence_id <- word(tiara$sequence_id)
     contig2bin$sequence_id <- word(contig2bin$sequence_id)
-  
+
     if(join_prokaryotes) {
         n_classifications <- 4
     } else {
