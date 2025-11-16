@@ -34,7 +34,7 @@ workflow BINNING {
         .map { meta, _assembly, bams, bais ->
             [meta, bams, bais]
         }
-        .branch { meta, _assembly, _bams, _bais ->
+        .branch { meta, _bams, _bais ->
             longread: meta.assembler in ['FLYE', 'METAMDBG']
             shortread: true
         }

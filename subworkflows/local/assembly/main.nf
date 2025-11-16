@@ -38,10 +38,10 @@ workflow ASSEMBLY {
                 meta.single_end = assemble_as_single
                 meta.sr_platform = metas.sr_platform[0]
                 if (assemble_as_single) {
-                    [meta, reads.collect(), []]
+                    [meta, reads, []]
                 }
                 else {
-                    [meta] + reads.sort { files -> files[0].getName() }.transpose()
+                    [meta] + reads.sort { r1, _r2 -> r1.getName() }.transpose()
                 }
             }
         // long reads
@@ -54,7 +54,7 @@ workflow ASSEMBLY {
                 meta.id = "group-${group}"
                 meta.group = group
                 meta.lr_platform = metas.lr_platform[0]
-                [meta, reads.collect()]
+                [meta, reads]
             }
     }
     else {
@@ -89,8 +89,10 @@ workflow ASSEMBLY {
 
             ch_long_reads_grouped_for_pool = ch_long_reads_grouped
                 .map { meta, reads -> [meta.id, meta, reads] }
-                .combine(ch_short_reads_grouped.map { meta, _reads1, _reads2 -> [meta.id, meta] }, by: 0)
-                .map { _id, meta, reads -> [meta, reads] }
+                .combine(ch_short_reads_grouped.map { meta, _reads1, _reads2 -> [meta.id] }, by: 0)
+                .map { _id, lr_meta, lr_reads ->
+                    [lr_meta, lr_reads]
+                }
             //make sure no long reads are pooled for spades if there are no short reads
 
             POOL_LONG_READS(ch_long_reads_grouped_for_pool)
