@@ -19,7 +19,7 @@ include { UNTAR as CHECKM_UNTAR              } from '../../../modules/nf-core/un
 
 workflow BIN_QC {
     take:
-    ch_bins // [ [ meta] , fasta ], input bins (mandatory)
+    ch_bins // [val(meta), path(fasta)], input bins (mandatory)
 
     main:
     ch_qc_summaries = channel.empty()

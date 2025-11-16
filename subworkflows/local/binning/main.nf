@@ -20,9 +20,9 @@ include { SPLIT_FASTA                                                           
 
 workflow BINNING {
     take:
-    ch_assemblies    // channel: [ val(meta), path(assembly), path(bams), path(bais) ]
-    val_bin_min_size
-    val_bin_max_size
+    ch_assemblies    // [val(meta), path(assembly), path(bams), path(bais)]
+    val_bin_min_size // val(int)
+    val_bin_max_size // val(int)
 
     main:
 

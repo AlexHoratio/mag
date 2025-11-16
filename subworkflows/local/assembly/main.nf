@@ -11,8 +11,8 @@ include { GUNZIP as GUNZIP_LONGREAD_ASSEMBLIES  } from '../../../modules/nf-core
 
 workflow ASSEMBLY {
     take:
-    ch_short_reads // [ [meta] , fastq1, fastq2] (mandatory)
-    ch_long_reads // [ [meta] , fastq] (mandatory)
+    ch_short_reads // [val(meta), path(fastq1), path(fastq2)] (mandatory)
+    ch_long_reads  // [val(meta), path(fastq)]                (mandatory)
 
     main:
 

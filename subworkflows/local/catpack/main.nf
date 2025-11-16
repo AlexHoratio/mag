@@ -14,8 +14,8 @@ include { UNTAR as CAT_DB_UNTAR                         } from '../../../modules
 
 workflow CATPACK {
     take:
-    ch_bins   // channel: [ val(meta), [bins] ]
-    ch_unbins // channel: [ val(meta), [unbins] ]
+    ch_bins   // [val(meta), path(fasta)]
+    ch_unbins // [val(meta), path(fasta)]
 
     main:
     ch_versions = channel.empty()

@@ -20,9 +20,9 @@ def getRowNo(filename) {
 
 workflow DEPTHS {
     take:
-    ch_bins_unbins // channel: val(meta), [ path(bins) ]
-    ch_depths      // channel: val(meta), path(depths)
-    ch_reads       // channel: val(meta), path(reads)
+    ch_bins_unbins // [val(meta), path(fasta)]
+    ch_depths      // [val(meta), path(depth)]
+    ch_reads       // [val(meta), path(fastq)]
 
     main:
     ch_versions = channel.empty()

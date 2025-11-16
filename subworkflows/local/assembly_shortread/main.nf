@@ -4,8 +4,8 @@ include { SPADES as METASPADES } from '../../../modules/nf-core/spades/main'
 
 workflow SHORTREAD_ASSEMBLY {
     take:
-    ch_short_reads_grouped // [ [meta] , fastq1, fastq2] (mandatory)
-    ch_short_reads_spades
+    ch_short_reads_grouped // [val(meta), path(fastq1), path(fastq2)] (mandatory)
+    ch_short_reads_spades  // [val(meta), path(fastq1)]               (mandatory)
 
     main:
     ch_versions = channel.empty()

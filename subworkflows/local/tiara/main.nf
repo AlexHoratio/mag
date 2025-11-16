@@ -6,9 +6,9 @@ include { TIARA_CLASSIFY                                               } from '.
 
 workflow TIARA {
     take:
-    ch_assemblies // tuple val(meta), path(assembly)
-    ch_in_bins    // tuple val(meta), path( [ bins ] )
-    ch_in_unbins  // tuple val(meta), path( [ unbins ] )
+    ch_assemblies // [val(meta), path(fasta)]
+    ch_in_bins    // [val(meta), path(fasta)]
+    ch_in_unbins  // [val(meta), path(fasta)]
 
     main:
     ch_versions = channel.empty()

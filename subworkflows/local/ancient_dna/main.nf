@@ -8,7 +8,7 @@ include { SAMTOOLS_FAIDX as FAIDX               } from '../../../modules/nf-core
 
 workflow ANCIENT_DNA_ASSEMBLY_VALIDATION {
     take:
-    ch_input //channel: [val(meta), path(contigs), path(bam), path(bam_index)]
+    ch_input // [val(meta), path(contigs), path(bam), path(bam_index)]
 
     main:
     ch_versions = channel.empty()

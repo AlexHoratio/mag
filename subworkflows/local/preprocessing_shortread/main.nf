@@ -19,11 +19,11 @@ include { BOWTIE2_REMOVAL_ALIGN as BOWTIE2_PHIX_REMOVAL_ALIGN } from '../../../m
 
 workflow SHORTREAD_PREPROCESSING {
     take:
-    ch_raw_short_reads   // [ [meta] , [fastq1, fastq2]] (mandatory)
-    ch_host_fasta        // [fasta] (optional)
-    ch_host_genome_index // fasta (optional)
-    ch_phix_db_file      // [fasta] (optional)
-    val_skip_qc          // [boolean]
+    ch_raw_short_reads   // [val(meta), [path(fastq1), path(fastq2)]] (mandatory)
+    ch_host_fasta        // [val(meta), path(fasta)]                  (optional)
+    ch_host_genome_index // path(fasta)                               (optional)
+    ch_phix_db_file      // [val(meta), path(fasta)]                  (optional)
+    val_skip_qc          // val(boolean)
 
     main:
     ch_versions = channel.empty()

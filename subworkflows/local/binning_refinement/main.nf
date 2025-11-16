@@ -17,8 +17,8 @@ include { RENAME_POSTDASTOOL                                              } from
 
 workflow BINNING_REFINEMENT {
     take:
-    ch_contigs_for_dastool // channel: [ val(meta), path(contigs) ]
-    ch_in_bins             // channel: [ val(meta), path(bins) ]
+    ch_contigs_for_dastool // [val(meta), path(contigs)]
+    ch_in_bins             // [val(meta), path(bins)]
 
     main:
     ch_versions = channel.empty()

@@ -9,9 +9,9 @@ include { GTDBTK_SUMMARY        } from '../../../modules/local/gtdbtk_summary/ma
 
 workflow GTDBTK {
     take:
-    ch_bins // channel: [ val(meta), [bins] ]
-    ch_bin_qc_summary // channel: path
-    val_gtdb // value: path
+    ch_bins           // [val(meta), path(fasta)]
+    ch_bin_qc_summary // path
+    val_gtdb          // path
 
     main:
     ch_versions = channel.empty()

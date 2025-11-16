@@ -6,7 +6,7 @@ include { METABINNER_BINS           } from '../../../modules/local/metabinner_bi
 workflow BINNING_METABINNER {
 
     take:
-    ch_input // channel (mandatory): [ val(meta), path(fasta), path(depth) ] (fasta: raw contigs from assembly)
+    ch_input // [val(meta), path(fasta), path(depth)] (mandatory)
 
     main:
     ch_versions = channel.empty()

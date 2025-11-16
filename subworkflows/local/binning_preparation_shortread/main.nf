@@ -7,8 +7,8 @@ include { BOWTIE2_ASSEMBLY_ALIGN } from '../../../modules/local/bowtie2_assembly
 
 workflow SHORTREAD_BINNING_PREPARATION {
     take:
-    ch_assemblies // channel: [ val(meta), path(assembly) ]
-    ch_reads      // channel: [ val(meta), [ reads ] ]
+    ch_assemblies // [val(meta), path(assembly)]
+    ch_reads      // [val(meta), path(reads)]
 
     main:
 

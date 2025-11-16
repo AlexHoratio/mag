@@ -7,7 +7,7 @@ include { METAMDBG_ASM } from '../../../modules/nf-core/metamdbg/asm/main'
 
 workflow LONGREAD_ASSEMBLY {
     take:
-    ch_long_reads // [ [meta] , fastq] (mandatory)
+    ch_long_reads // [val(meta), path(fastq)] (mandatory)
 
     main:
     ch_assembled_contigs = channel.empty()

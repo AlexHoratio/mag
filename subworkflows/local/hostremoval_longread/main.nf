@@ -12,7 +12,7 @@ include { SAMTOOLS_UNMAPPED as SAMTOOLS_HOSTREMOVED_UNMAPPED } from '../../../mo
 
 workflow LONGREAD_HOSTREMOVAL {
     take:
-    ch_reads      // [ [ meta ], [ reads ] ]
+    ch_reads      // [val(meta), path(fastq)]
     val_reference // path
 
     main:

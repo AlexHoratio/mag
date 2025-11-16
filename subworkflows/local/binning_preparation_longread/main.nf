@@ -3,8 +3,8 @@ include { MINIMAP2_ALIGN as MINIMAP2_ASSEMBLY_ALIGN } from '../../../modules/nf-
 
 workflow LONGREAD_BINNING_PREPARATION {
     take:
-    ch_assemblies // channel: [ val(meta), path(assembly) ]
-    ch_reads      // channel: [ val(meta), [ reads ] ]
+    ch_assemblies // [val(meta), path(assembly)]
+    ch_reads      // [val(meta), path(reads)]
 
     main:
     ch_versions = channel.empty()
