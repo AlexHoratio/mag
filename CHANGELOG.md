@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Fixed`
 
-- [#893](https://github.com/nf-core/mag/pull/893) - Fix R1 being mistakenly provided to POOL_SHORT_READS instead of R2 for paired end data (reported by @maartenciers, fix by @jfy133)
+- [#893](https://github.com/nf-core/mag/pull/893) - Fix R1 being mistakenly provided to POOL_SHORT_READS instead of R2 for paired end data (reported by @maartenciers, fix by @jfy133 with contributions from @prototaxites, @d4straub and @dialvarezs)
 - [#927](https://github.com/nf-core/mag/pull/927) - MetaBinner now succeeds when no contigs are too short or all are binned (reported by @MicroSeq, fix by @d4straub)
 - [#929](https://github.com/nf-core/mag/pull/929) - Allow the domain_classification.R script to run with any assembler, not just Megahit or Spades (reported by @MicroSeq, fix by @prototaxites)
 

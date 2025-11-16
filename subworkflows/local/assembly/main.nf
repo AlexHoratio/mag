@@ -32,23 +32,26 @@ workflow ASSEMBLY {
             .groupTuple(by: 0)
             .map { group, metas, reads ->
                 def assemble_as_single = params.single_end || (params.bbnorm && params.coassemble_group)
-                def meta = [:]
-                meta.id = "group-${group}"
-                meta.group = group
-                meta.single_end = assemble_as_single
-                meta.sr_platform = metas.sr_platform[0]
+                def meta = [
+                    id: "group-${group}",
+                    group: group,
+                    single_end: assemble_as_single,
+                    sr_platform: metas.sr_platform[0]
+                ]
                 if (assemble_as_single) {
-                    [meta, reads.collect { it }, []]
+                    [meta, reads.collect { file -> file }, []]
                 }
                 else {
-                    [meta, reads.collect { it[0] }, reads.collect { it[1] }]
+                    [meta] + reads.sort { files -> files[0].getName() }.transpose()
                 }
             }
 
         // We have to merge reads together to match tuple structure of POOL_SHORT_READS/
         // This MUST be in a interleaved structure (s1_r1, s1_r2, s2_r1, s2_r2, ...)
         // So we merge the two list of R1 and R2s, and sort them to ensure correct order above
-        ch_short_reads_grouped_for_pooling = ch_short_reads_grouped.map { meta, reads1, reads2 -> [meta, [reads1 + reads2].flatten().sort()] }
+        ch_short_reads_grouped_for_pooling = ch_short_reads_grouped.map { meta, reads1, reads2 ->
+            [meta, [reads1, reads2].transpose().flatten()]
+        }
 
         // long reads
         // group and set group as new id
