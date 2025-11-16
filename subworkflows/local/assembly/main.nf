@@ -90,9 +90,7 @@ workflow ASSEMBLY {
             ch_long_reads_grouped_for_pool = ch_long_reads_grouped
                 .map { meta, reads -> [meta.id, meta, reads] }
                 .combine(ch_short_reads_grouped.map { meta, _reads1, _reads2 -> [meta.id] }, by: 0)
-                .map { _id, lr_meta, lr_reads ->
-                    [lr_meta, lr_reads]
-                }
+                .map { _id, lr_meta, lr_reads -> [lr_meta, lr_reads] }
             //make sure no long reads are pooled for spades if there are no short reads
 
             POOL_LONG_READS(ch_long_reads_grouped_for_pool)
