@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Changed`
 
+- [#932](https://github.com/nf-core/mag/pull/932) - Remove usages of deprecated `Channel()` and fix other LSP warnings (by @dialvarezs)
+
 ### `Fixed`
 
 - [#927](https://github.com/nf-core/mag/pull/927) - MetaBinner now succeeds when no contigs are too short or all are binned (reported by @MicroSeq, fix by @d4straub)
