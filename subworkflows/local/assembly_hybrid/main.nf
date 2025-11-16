@@ -8,8 +8,8 @@ workflow HYBRID_ASSEMBLY {
 
     main:
 
-    ch_versions = Channel.empty()
-    ch_assembled_contigs = Channel.empty()
+    ch_versions = channel.empty()
+    ch_assembled_contigs = channel.empty()
 
     if (!params.single_end && !params.skip_spadeshybrid) {
         ch_short_reads_spades_tmp = ch_short_reads_spades.map { meta, reads -> [meta.id, meta, reads] }

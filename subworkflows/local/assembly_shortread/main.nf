@@ -8,8 +8,8 @@ workflow SHORTREAD_ASSEMBLY {
     ch_short_reads_spades
 
     main:
-    ch_versions = Channel.empty()
-    ch_assembled_contigs = Channel.empty()
+    ch_versions = channel.empty()
+    ch_assembled_contigs = channel.empty()
 
     if (!params.single_end && !params.skip_spades) {
         METASPADES(ch_short_reads_spades.map { meta, reads -> [meta, reads, [], []] }, [], [])

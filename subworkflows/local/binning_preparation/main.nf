@@ -9,8 +9,8 @@ workflow BINNING_PREPARATION {
     ch_longreads            // channel: [ val(meta), [ reads ] ]
 
     main:
-    ch_versions = Channel.empty()
-    ch_multiqc_files = Channel.empty()
+    ch_versions = channel.empty()
+    ch_multiqc_files = channel.empty()
     SHORTREAD_BINNING_PREPARATION(ch_shortread_assemblies, ch_shortreads)
     ch_versions = ch_versions.mix(SHORTREAD_BINNING_PREPARATION.out.versions)
 

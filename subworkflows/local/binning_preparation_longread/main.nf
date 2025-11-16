@@ -7,7 +7,7 @@ workflow LONGREAD_BINNING_PREPARATION {
     ch_reads      // channel: [ val(meta), [ reads ] ]
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     MINIMAP2_ASSEMBLY_INDEX(ch_assemblies)
     ch_versions = ch_versions.mix(MINIMAP2_ASSEMBLY_INDEX.out.versions)

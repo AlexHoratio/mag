@@ -12,7 +12,7 @@ workflow SHORTREAD_BINNING_PREPARATION {
 
     main:
 
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
     // build bowtie2 index for all assemblies
     BOWTIE2_ASSEMBLY_BUILD(ch_assemblies)
     ch_versions = ch_versions.mix(BOWTIE2_ASSEMBLY_BUILD.out.versions)

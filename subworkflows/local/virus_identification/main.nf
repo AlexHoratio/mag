@@ -12,7 +12,7 @@ workflow VIRUS_IDENTIFICATION {
     ch_genomad_db // [ db                 ], presupplied geNomad database (optional)
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     if (params.genomad_db && ch_genomad_db.extension == 'gz') {
         GENOMAD_UNTAR([[id: 'db'], ch_genomad_db])

@@ -11,7 +11,7 @@ workflow TIARA {
     ch_in_unbins  // tuple val(meta), path( [ unbins ] )
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     ch_bins = ch_in_bins.map { meta, bin_list ->
         def meta_new = meta + [bin: 'bins']

@@ -10,8 +10,8 @@ workflow LONGREAD_ASSEMBLY {
     ch_long_reads // [ [meta] , fastq] (mandatory)
 
     main:
-    ch_assembled_contigs = Channel.empty()
-    ch_versions = Channel.empty()
+    ch_assembled_contigs = channel.empty()
+    ch_versions = channel.empty()
 
     if (!params.skip_flye) {
 

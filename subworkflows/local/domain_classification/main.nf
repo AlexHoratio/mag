@@ -11,7 +11,7 @@ workflow DOMAIN_CLASSIFICATION {
     ch_unbins     // tuple val(meta), path( [ unbins ] )
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     if (params.bin_domain_classification_tool == "tiara") {
         TIARA(ch_assemblies, ch_bins, ch_unbins)

@@ -18,7 +18,7 @@ workflow CATPACK {
     ch_unbins // channel: [ val(meta), [unbins] ]
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     /*
     ========================================
@@ -34,7 +34,7 @@ workflow CATPACK {
             ch_cat_db_dir = CAT_DB_UNTAR.out.untar
         }
         else {
-            ch_cat_db_dir = Channel.fromPath(params.cat_db, checkIfExists: true, type: 'dir')
+            ch_cat_db_dir = channel.fromPath(params.cat_db, checkIfExists: true, type: 'dir')
                 .map { dir -> [[id: 'cat_db'], dir] }
                 .first()
         }
