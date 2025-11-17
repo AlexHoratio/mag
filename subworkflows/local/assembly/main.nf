@@ -39,10 +39,10 @@ workflow ASSEMBLY {
                     sr_platform: metas.sr_platform[0]
                 ]
                 if (assemble_as_single) {
-                    [meta, reads, []]
+                    [meta, reads.sort { files -> files[0].getName() }, []]
                 }
                 else {
-                    [meta] + reads.sort { r1, _r2 -> r1.getName() }.transpose()
+                    [meta] + reads.sort { files -> files[0].getName() }.transpose()
                 }
             }
 
