@@ -82,6 +82,8 @@ workflow ASSEMBLY {
     if (!params.skip_spades || !params.skip_spadeshybrid) {
         if (params.coassemble_group) {
             if (params.bbnorm) {
+                // When doing co-assembly and using bbnorm, all sample reads get pooled in a single file
+                // That's why we can drop R2 here (it's empty)
                 ch_short_reads_spades = ch_short_reads_grouped.map { meta, r1, _r2 -> [meta, r1] }
             }
             else {
