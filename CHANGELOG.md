@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Changed`
 
+- [#932](https://github.com/nf-core/mag/pull/932) - Replaced usages of deprecated `Channel()` with `channel()` and fix other LSP warnings (by @dialvarezs)
+
 ### `Fixed`
 
 - [#894](https://github.com/nf-core/mag/pull/894) - Fix read order in metaSPAdes to allow co-assembly of paired-end data of multiple samples (reported by @maartenciers, fix by @jfy133 with contributions from @prototaxites, @d4straub and @dialvarezs)
