@@ -32,18 +32,27 @@ workflow ASSEMBLY {
             .groupTuple(by: 0)
             .map { group, metas, reads ->
                 def assemble_as_single = params.single_end || (params.bbnorm && params.coassemble_group)
-                def meta = [:]
-                meta.id = "group-${group}"
-                meta.group = group
-                meta.single_end = assemble_as_single
-                meta.sr_platform = metas.sr_platform[0]
+                def meta = [
+                    id: "group-${group}",
+                    group: group,
+                    single_end: assemble_as_single,
+                    sr_platform: metas.sr_platform[0]
+                ]
                 if (assemble_as_single) {
-                    [meta, reads.collect { it }, []]
+                    [meta, reads.collect { file -> file }, []]
                 }
                 else {
-                    [meta, reads.collect { it[0] }, reads.collect { it[1] }]
+                    [meta] + reads.sort { files -> files[0].getName() }.transpose()
                 }
             }
+
+        // We have to merge reads together to match tuple structure of POOL_SHORT_READS/
+        // This MUST be in a interleaved structure (s1_r1, s1_r2, s2_r1, s2_r2, ...)
+        // So we zip the lists of R1s and R2s, consistent order is ensured by the existing structure
+        ch_short_reads_grouped_for_pooling = ch_short_reads_grouped.map { meta, reads1, reads2 ->
+            [meta, [reads1, reads2].transpose().flatten()]
+        }
+
         // long reads
         // group and set group as new id
         ch_long_reads_grouped = ch_long_reads
@@ -73,7 +82,7 @@ workflow ASSEMBLY {
                 ch_short_reads_spades = ch_short_reads_grouped.map { [it[0], it[1]] }
             }
             else {
-                POOL_SHORT_READS(ch_short_reads_grouped)
+                POOL_SHORT_READS(ch_short_reads_grouped_for_pooling)
                 ch_versions = ch_versions.mix(POOL_SHORT_READS.out.versions)
                 ch_short_reads_spades = POOL_SHORT_READS.out.reads
             }
