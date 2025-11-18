@@ -36,12 +36,6 @@ def parse_args(args=None):
         help="summarisepydamage table file.",
     )
     parser.add_argument(
-        "-t",
-        "--binqc_tool",
-        help="Bin QC tool used",
-        choices=["busco", "checkm", "checkm2"],
-    )
-    parser.add_argument(
         "-g", "--gtdbtk_summary", metavar="FILE", help="GTDB-Tk summary file."
     )
     parser.add_argument(
