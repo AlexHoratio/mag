@@ -30,7 +30,6 @@ process GUNC_RUN {
         --db_file $db \\
         --threads $task.cpus \\
         $args
-        
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
