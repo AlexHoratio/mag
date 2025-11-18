@@ -230,6 +230,18 @@
                     "fa_icon": "far calendar",
                     "description": "Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss.",
                     "hidden": true
+                },
+                "help": {
+                    "type": ["boolean", "string"],
+                    "description": "Display the help message."
+                },
+                "help_full": {
+                    "type": "boolean",
+                    "description": "Display the full detailed help message."
+                },
+                "show_hidden": {
+                    "type": "boolean",
+                    "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
                 }
             }
         },
@@ -524,14 +536,8 @@
                 "gtdb_db": {
                     "type": "string",
                     "description": "Specify the location of a GTDBTK database. Can be either an uncompressed directory or a `.tar.gz` archive. If not specified will be downloaded for you when GTDBTK or binning QC is not skipped.",
-                    "default": "https://data.gtdb.ecogenomic.org/releases/release220/220.0/auxillary_files/gtdbtk_package/full_package/gtdbtk_r220_data.tar.gz",
+                    "default": "https://data.gtdb.aau.ecogenomic.org/releases/release226/226.0/auxillary_files/gtdbtk_package/full_package/gtdbtk_r226_data.tar.gz",
                     "format": "path"
-                },
-                "gtdb_mash": {
-                    "type": "string",
-                    "description": "Specify the location of a GTDBTK mash database. If missing, GTDB-Tk will skip the ani_screening step",
-                    "format": "path",
-                    "exists": true
                 },
                 "gtdbtk_min_completeness": {
                     "type": "number",
@@ -577,6 +583,10 @@
                 "gtdbtk_use_full_tree": {
                     "type": "boolean",
                     "description": "Specify to have GTDBTk to use the full bacterial tree rather than the split tree (requires more memory!)"
+                },
+                "gtdbtk_skip_aniscreen": {
+                    "type": "boolean",
+                    "description": "Specify to disable fast classification of genomes by ANI using skani in GTDB-Tk."
                 }
             }
         },
@@ -763,6 +773,21 @@
                     "type": "boolean",
                     "description": "Skip CONCOCT Binning"
                 },
+                "skip_comebin": {
+                    "type": "boolean",
+                    "description": "Skip COMEBin Binning"
+                },
+                "skip_metabinner": {
+                    "type": "boolean",
+                    "description": "Skip MetaBinner Binning"
+                },
+                "bin_metabinner_scale": {
+                    "type": "string",
+                    "default": "large",
+                    "enum": ["small", "large", "huge"],
+                    "description": "Dataset scale for MetaBinner",
+                    "help_text": "Dataset scale; eg. small,large,huge (default:large); Users can choose `huge` to run MetaBinner on huge datasets with lower memory requirements."
+                },
                 "min_contig_size": {
                     "type": "integer",
                     "default": 1500,
@@ -861,11 +886,17 @@
                     "type": "boolean",
                     "description": "Disable bin QC with BUSCO, CheckM or CheckM2."
                 },
-                "binqc_tool": {
-                    "type": "string",
-                    "default": "busco",
-                    "description": "Specify which tool for bin quality-control validation to use.",
-                    "enum": ["busco", "checkm", "checkm2"]
+                "run_busco": {
+                    "type": "boolean",
+                    "description": "Enable running BUSCO during bin QC."
+                },
+                "run_checkm": {
+                    "type": "boolean",
+                    "description": "Enable running CheckM during bin QC."
+                },
+                "run_checkm2": {
+                    "type": "boolean",
+                    "description": "Enable running CheckM2 during bin QC."
                 },
                 "busco_db": {
                     "type": "string",
@@ -914,7 +945,7 @@
                 },
                 "checkm2_db": {
                     "type": "string",
-                    "description": "Path to local file of an already downloaded and uncompressed CheckM2 database (.dmnd file).",
+                    "description": "Path to local file of an already downloaded and uncompressed CheckM2 database file (.dmnd file).",
                     "help_text": "The pipeline can also download this for you if not specified, and you can save the resulting directory into your output directory by specifying `--save_checkm2_data`. You should move this file to somewhere else on your machine (and supply back to the pipeline in future runs again with `--checkm2_db`).",
                     "format": "file-path",
                     "exists": true

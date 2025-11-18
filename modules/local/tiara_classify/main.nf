@@ -2,7 +2,7 @@ process TIARA_CLASSIFY {
     tag "${meta.id}"
     label "process_single"
 
-    conda "conda-forge::r-tidyverse=1.3.1 conda-forge::r-optparse=1.7.3"
+    conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/mulled-v2-1021c2bc41756fa99bc402f461dad0d1c35358c1:b0c847e4fb89c343b04036e33b2daa19c4152cf5-0' :
         'biocontainers/mulled-v2-1021c2bc41756fa99bc402f461dad0d1c35358c1:b0c847e4fb89c343b04036e33b2daa19c4152cf5-0' }"
@@ -42,6 +42,7 @@ process TIARA_CLASSIFY {
     done < bin2classification.tsv
 
     cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
         r-base: \$(R --version | head -n 1 | grep -Eo '[0-9.]+ ')
         r-tidyverse: \$(cat tidyverse_version.txt)
     END_VERSIONS

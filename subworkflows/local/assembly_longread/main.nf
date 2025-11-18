@@ -7,11 +7,11 @@ include { METAMDBG_ASM } from '../../../modules/nf-core/metamdbg/asm/main'
 
 workflow LONGREAD_ASSEMBLY {
     take:
-    ch_long_reads // [ [meta] , fastq] (mandatory)
+    ch_long_reads // [val(meta), path(fastq)] (mandatory)
 
     main:
-    ch_assembled_contigs = Channel.empty()
-    ch_versions = Channel.empty()
+    ch_assembled_contigs = channel.empty()
+    ch_versions = channel.empty()
 
     if (!params.skip_flye) {
 
@@ -20,7 +20,7 @@ workflow LONGREAD_ASSEMBLY {
             if (meta.lr_platform == "OXFORD_NANOPORE") {
                 fly_mode = "--nano-raw"
             }
-            else if (meta.lr_platform == "NANOPORE_HQ") {
+            else if (meta.lr_platform == "OXFORD_NANOPORE_HQ") {
                 fly_mode = "--nano-hq"
             }
             else if (meta.lr_platform == "PACBIO_HIFI") {
@@ -56,7 +56,7 @@ workflow LONGREAD_ASSEMBLY {
             if (meta.lr_platform == "OXFORD_NANOPORE") {
                 metamdbg_mode = "ont"
             }
-            else if (meta.lr_platform == "NANOPORE_HQ") {
+            else if (meta.lr_platform == "OXFORD_NANOPORE_HQ") {
                 metamdbg_mode = "ont"
             }
             else if (meta.lr_platform == "PACBIO_HIFI") {

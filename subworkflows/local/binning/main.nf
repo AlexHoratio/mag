@@ -2,11 +2,14 @@
  * Binning with MetaBAT2 and MaxBin2
  */
 include { FASTA_BINNING_CONCOCT                                                                  } from '../../../subworkflows/nf-core/fasta_binning_concoct/main'
+include { BINNING_METABINNER                                                                     } from '../../../subworkflows/local/binning_metabinner/main'
 
 include { METABAT2_METABAT2                                                                      } from '../../../modules/nf-core/metabat2/metabat2/main'
 include { METABAT2_JGISUMMARIZEBAMCONTIGDEPTHS as METABAT2_JGISUMMARIZEBAMCONTIGDEPTHS_SHORTREAD } from '../../../modules/nf-core/metabat2/jgisummarizebamcontigdepths/main'
 include { METABAT2_JGISUMMARIZEBAMCONTIGDEPTHS as METABAT2_JGISUMMARIZEBAMCONTIGDEPTHS_LONGREAD  } from '../../../modules/nf-core/metabat2/jgisummarizebamcontigdepths/main'
 include { MAXBIN2                                                                                } from '../../../modules/nf-core/maxbin2/main'
+include { COMEBIN_RUNCOMEBIN                                                                     } from '../../../modules/nf-core/comebin/runcomebin/main'
+
 include { GUNZIP as GUNZIP_BINS                                                                  } from '../../../modules/nf-core/gunzip/main'
 include { GUNZIP as GUNZIP_UNBINS                                                                } from '../../../modules/nf-core/gunzip/main'
 include { SEQKIT_STATS                                                                           } from '../../../modules/nf-core/seqkit/stats/main'
@@ -17,21 +20,22 @@ include { SPLIT_FASTA                                                           
 
 workflow BINNING {
     take:
-    ch_assemblies    // channel: [ val(meta), path(assembly), path(bams), path(bais) ]
-    val_bin_min_size
-    val_bin_max_size
+    ch_assemblies    // [val(meta), path(assembly), path(bams), path(bais)]
+    val_bin_min_size // val(int)
+    val_bin_max_size // val(int)
 
     main:
 
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
+    ch_input_splitfasta = channel.empty()
 
     // generate coverage depths for each contig and branch by assembler type
     ch_summarizedepth_input = ch_assemblies
         .map { meta, _assembly, bams, bais ->
             [meta, bams, bais]
         }
-        .branch {
-            longread: it[0].assembler in ['FLYE', 'METAMDBG']
+        .branch { meta, _bams, _bais ->
+            longread: meta.assembler in ['FLYE', 'METAMDBG']
             shortread: true
         }
 
@@ -43,7 +47,9 @@ workflow BINNING {
     ch_versions = ch_versions.mix(METABAT2_JGISUMMARIZEBAMCONTIGDEPTHS_SHORTREAD.out.versions)
 
     // Merge the outputs
-    ch_combined_depths = METABAT2_JGISUMMARIZEBAMCONTIGDEPTHS_LONGREAD.out.depth.mix(METABAT2_JGISUMMARIZEBAMCONTIGDEPTHS_SHORTREAD.out.depth)
+    ch_combined_depths = METABAT2_JGISUMMARIZEBAMCONTIGDEPTHS_LONGREAD.out.depth.mix(
+        METABAT2_JGISUMMARIZEBAMCONTIGDEPTHS_SHORTREAD.out.depth
+    )
     ch_metabat_depths = ch_combined_depths.map { meta, depths ->
         def meta_new = meta + [binner: 'MetaBAT2']
         [meta_new, depths]
@@ -72,12 +78,12 @@ workflow BINNING {
     }
 
     // main bins for decompressing for MAG_DEPTHS
-    ch_bins_for_seqkit = Channel.empty()
+    ch_bins_for_seqkit = channel.empty()
 
     // final gzipped bins
-    ch_binning_results_gzipped_final = Channel.empty()
+    ch_binning_results_gzipped_final = channel.empty()
 
-    // run binning
+    // MetaBAT2
     if (!params.skip_metabat2) {
         METABAT2_METABAT2(ch_metabat2_input)
         ch_versions = ch_versions.mix(METABAT2_METABAT2.out.versions)
@@ -85,7 +91,10 @@ workflow BINNING {
         // before decompressing first have to separate and re-group due to limitation of GUNZIP module
         ch_bins_for_seqkit = ch_bins_for_seqkit.mix(METABAT2_METABAT2.out.fasta.transpose())
         ch_binning_results_gzipped_final = ch_binning_results_gzipped_final.mix(METABAT2_METABAT2.out.fasta)
+        ch_input_splitfasta = ch_input_splitfasta.mix(METABAT2_METABAT2.out.unbinned)
     }
+
+    // MaxBin2
     if (!params.skip_maxbin2) {
         MAXBIN2(ch_maxbin2_input)
         ch_versions = ch_versions.mix(MAXBIN2.out.versions)
@@ -95,7 +104,10 @@ workflow BINNING {
 
         ch_bins_for_seqkit = ch_bins_for_seqkit.mix(ADJUST_MAXBIN2_EXT.out.renamed_bins.transpose())
         ch_binning_results_gzipped_final = ch_binning_results_gzipped_final.mix(ADJUST_MAXBIN2_EXT.out.renamed_bins)
+        ch_input_splitfasta = ch_input_splitfasta.mix(MAXBIN2.out.unbinned_fasta)
     }
+
+    // CONCOCT
     if (!params.skip_concoct) {
 
         ch_concoct_input = ch_assemblies
@@ -115,19 +127,35 @@ workflow BINNING {
         ch_binning_results_gzipped_final = ch_binning_results_gzipped_final.mix(FASTA_BINNING_CONCOCT.out.bins)
     }
 
-    // decide which unbinned fasta files to further filter, depending on which binners selected
-    // NOTE: CONCOCT does not produce 'unbins' itself, therefore not included here.
-    if (!params.skip_metabat2 && params.skip_maxbin2) {
-        ch_input_splitfasta = METABAT2_METABAT2.out.unbinned
+    // COMEBin
+    if (!params.skip_comebin) {
+        ch_comebin_input = ch_assemblies
+            .map { meta, assembly, bams, _bais ->
+                def meta_new = meta + [binner: 'COMEBin']
+                [meta_new, assembly, bams]
+            }
+
+        COMEBIN_RUNCOMEBIN(ch_comebin_input)
+        ch_versions = ch_versions.mix(COMEBIN_RUNCOMEBIN.out.versions)
+
+        ch_bins_for_seqkit = ch_bins_for_seqkit.mix(COMEBIN_RUNCOMEBIN.out.bins.transpose())
+        ch_binning_results_gzipped_final = ch_binning_results_gzipped_final.mix(COMEBIN_RUNCOMEBIN.out.bins)
     }
-    else if (params.skip_metabat2 && !params.skip_maxbin2) {
-        ch_input_splitfasta = MAXBIN2.out.unbinned_fasta
-    }
-    else if (params.skip_metabat2 && params.skip_maxbin2) {
-        ch_input_splitfasta = Channel.empty()
-    }
-    else {
-        ch_input_splitfasta = METABAT2_METABAT2.out.unbinned.mix(MAXBIN2.out.unbinned_fasta)
+
+    // MetaBinner
+    if (!params.skip_metabinner) {
+        BINNING_METABINNER(
+            ch_metabat2_input
+                .map { meta, assembly, depths ->
+                    def meta_new = meta + [binner: 'MetaBinner']
+                    [meta_new, assembly, depths]
+                }
+        )
+        ch_versions = ch_versions.mix(BINNING_METABINNER.out.versions)
+
+        ch_bins_for_seqkit = ch_bins_for_seqkit.mix( BINNING_METABINNER.out.bins.transpose() )
+        ch_binning_results_gzipped_final = ch_binning_results_gzipped_final.mix( BINNING_METABINNER.out.bins )
+        ch_input_splitfasta = ch_input_splitfasta.mix(BINNING_METABINNER.out.unbinned)
     }
 
     // group bins into per-sample process and not flood clusters with thousands of seqkit jobs
@@ -148,6 +176,27 @@ workflow BINNING {
             [[filename: row.file], [bin_total_length: row.sum_len.toInteger()]]
         }
 
+    //
+    // Logic: Gather all the bin lengths, then check if the number of bins after length
+    //        filtering is 0. Error if so, but only if we had bins to begin with.
+    //
+    ch_seqkitstats_results
+        .map { _meta, stats -> stats.bin_total_length }
+        .collect().ifEmpty([])
+        .subscribe { stats ->
+            def n_bins = stats.size()
+            def n_filtered_bins = stats.findAll { bin_size ->
+                bin_size >= val_bin_min_size && (val_bin_max_size ? bin_size <= val_bin_max_size : true)
+            }.size()
+            if (n_bins > 0 && n_filtered_bins == 0) {
+                error(
+                    "[nf-core/mag] ERROR: no bins passed the bin size filter specified between " +
+                    "--bin_min_size ${val_bin_min_size} and " +
+                    "--bin_max_size ${val_bin_max_size}. Please adjust parameters."
+                )
+            }
+        }
+
     ch_final_bins_for_gunzip = ch_bins_for_seqkit
         .map { meta, bin ->
             [[filename: bin.name], meta, bin]
@@ -158,9 +207,6 @@ workflow BINNING {
         }
         .filter { meta, _bin ->
             meta.bin_total_length >= val_bin_min_size && (val_bin_max_size ? meta.bin_total_length <= val_bin_max_size : true)
-        }
-        .ifEmpty {
-            error("[nf-core/mag] ERROR: no bins passed the bin size filter specified between --bin_min_size ${val_bin_min_size} and --bin_max_size ${val_bin_max_size}. Please adjust parameters.")
         }
         .map { meta, bin ->
             [meta.minus([bin_total_length: meta.bin_total_length]), bin]

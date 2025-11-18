@@ -46,14 +46,14 @@ include { PYDAMAGE_BINS                   } from '../subworkflows/local/PYDAMAGE
 
 workflow MAG {
     take:
-    ch_raw_short_reads  // channel: samplesheet read in from --input
+    ch_raw_short_reads // channel: samplesheet read in from --input
     ch_raw_long_reads
     ch_input_assemblies
 
     main:
 
-    ch_versions = Channel.empty()
-    ch_multiqc_files = Channel.empty()
+    ch_versions = channel.empty()
+    ch_multiqc_files = channel.empty()
 
     ////////////////////////////////////////////////////
     /* --  Create channel for reference databases  -- */
@@ -61,61 +61,64 @@ workflow MAG {
 
     if (params.host_genome) {
         host_fasta = params.genomes[params.host_genome].fasta ?: false
-        ch_host_fasta = Channel.value(file("${host_fasta}"))
+        ch_host_fasta = channel.value(file("${host_fasta}"))
         host_bowtie2index = params.genomes[params.host_genome].bowtie2 ?: false
-        ch_host_bowtie2index = Channel.fromPath("${host_bowtie2index}", checkIfExists: true).first()
+        ch_host_bowtie2index = channel.fromPath("${host_bowtie2index}", checkIfExists: true).first()
     }
     else if (params.host_fasta) {
-        ch_host_fasta = Channel.fromPath("${params.host_fasta}", checkIfExists: true).first() ?: false
+        ch_host_fasta = channel.fromPath("${params.host_fasta}", checkIfExists: true).first() ?: false
 
         if (params.host_fasta_bowtie2index) {
-            ch_host_bowtie2index = Channel.fromPath("${params.host_fasta_bowtie2index}", checkIfExists: true).first()
+            ch_host_bowtie2index = channel.fromPath("${params.host_fasta_bowtie2index}", checkIfExists: true).first()
         }
         else {
-            ch_host_bowtie2index = Channel.empty()
+            ch_host_bowtie2index = channel.empty()
         }
     }
     else {
-        ch_host_fasta = Channel.empty()
-        ch_host_bowtie2index = Channel.empty()
+        ch_host_fasta = channel.empty()
+        ch_host_bowtie2index = channel.empty()
     }
 
     if (!params.keep_phix) {
-        ch_phix_db_file = params.phix_reference ? Channel.value(file("${params.phix_reference}", checkIfExists: true)) : Channel.value(file("${projectDir}/assets/data/GCA_002596845.1_ASM259684v1_genomic.fna.gz", checkIfExists: true))
+        ch_phix_db_file = params.phix_reference
+            ? channel.value(file("${params.phix_reference}", checkIfExists: true))
+            : channel.value(file("${projectDir}/assets/data/GCA_002596845.1_ASM259684v1_genomic.fna.gz", checkIfExists: true))
     }
     else {
-        ch_phix_db_file = Channel.empty()
+        ch_phix_db_file = channel.empty()
     }
 
     if (!params.keep_lambda) {
-        ch_lambda_db = params.lambda_reference ? Channel.value(file("${params.lambda_reference}", checkIfExists: true)) : Channel.value(file("${projectDir}/assets/data/GCA_000840245.1_ViralProj14204_genomic.fna.gz", checkIfExists: true))
+        ch_lambda_db = params.lambda_reference
+            ? channel.value(file("${params.lambda_reference}", checkIfExists: true))
+            : channel.value(file("${projectDir}/assets/data/GCA_000840245.1_ViralProj14204_genomic.fna.gz", checkIfExists: true))
     }
     else {
-        ch_lambda_db = Channel.value([])
+        ch_lambda_db = channel.value([])
     }
 
     if (params.genomad_db) {
         ch_genomad_db = file(params.genomad_db, checkIfExists: true)
     }
     else {
-        ch_genomad_db = Channel.empty()
+        ch_genomad_db = channel.empty()
     }
 
     gtdb = params.skip_binqc || params.skip_gtdbtk ? false : params.gtdb_db
 
     if (gtdb) {
         gtdb = file("${gtdb}", checkIfExists: true)
-        gtdb_mash = params.gtdb_mash ? file("${params.gtdb_mash}", checkIfExists: true) : []
     }
     else {
         gtdb = []
     }
 
     if (params.metaeuk_db && !params.skip_metaeuk) {
-        ch_metaeuk_db = Channel.value(file("${params.metaeuk_db}", checkIfExists: true))
+        ch_metaeuk_db = channel.value(file("${params.metaeuk_db}", checkIfExists: true))
     }
     else {
-        ch_metaeuk_db = Channel.empty()
+        ch_metaeuk_db = channel.empty()
     }
 
     // Get mmseqs db for MetaEuk if requested
@@ -140,7 +143,9 @@ workflow MAG {
             params.skip_shortread_qc,
         )
         ch_versions = ch_versions.mix(SHORTREAD_PREPROCESSING.out.versions)
-        ch_multiqc_files = ch_multiqc_files.mix(SHORTREAD_PREPROCESSING.out.multiqc_files.collect { it[1] }.ifEmpty([]))
+        ch_multiqc_files = ch_multiqc_files.mix(
+            SHORTREAD_PREPROCESSING.out.multiqc_files.collect { _meta, report -> report }.ifEmpty([])
+        )
         ch_short_reads = SHORTREAD_PREPROCESSING.out.short_reads
         ch_short_reads_assembly = SHORTREAD_PREPROCESSING.out.short_reads_assembly
     }
@@ -165,7 +170,9 @@ workflow MAG {
         params.skip_longread_qc,
     )
     ch_versions = ch_versions.mix(LONGREAD_PREPROCESSING.out.versions)
-    ch_multiqc_files = ch_multiqc_files.mix(LONGREAD_PREPROCESSING.out.multiqc_files.collect { it[1] }.ifEmpty([]))
+    ch_multiqc_files = ch_multiqc_files.mix(
+        LONGREAD_PREPROCESSING.out.multiqc_files.collect { _meta, report -> report }.ifEmpty([])
+    )
     ch_long_reads = LONGREAD_PREPROCESSING.out.long_reads
 
     /*
@@ -196,10 +203,10 @@ workflow MAG {
         GUNZIP_ASSEMBLYINPUT(ch_assemblies_split.gzipped)
         ch_versions = ch_versions.mix(GUNZIP_ASSEMBLYINPUT.out.versions)
 
-        ch_assemblies = Channel.empty()
+        ch_assemblies = channel.empty()
         ch_assemblies = ch_assemblies.mix(ch_assemblies_split.ungzip, GUNZIP_ASSEMBLYINPUT.out.gunzip)
-        ch_shortread_assemblies = ch_assemblies.filter { it[0].assembler.toUpperCase() in ['SPADES', 'SPADESHYBRID', 'MEGAHIT'] }
-        ch_longread_assemblies = ch_assemblies.filter { it[0].assembler.toUpperCase() in ['FLYE', 'METAMDBG'] }
+        ch_shortread_assemblies = ch_assemblies.filter { meta, _contigs -> meta.assembler.toUpperCase() in ['SPADES', 'SPADESHYBRID', 'MEGAHIT'] }
+        ch_longread_assemblies = ch_assemblies.filter { meta, _contigs -> meta.assembler.toUpperCase() in ['FLYE', 'METAMDBG'] }
     }
 
     if (!params.skip_quast) {
@@ -270,7 +277,9 @@ workflow MAG {
         // Make sure if running aDNA subworkflow to use the damage-corrected contigs for higher accuracy
         if (params.ancient_dna && !params.skip_ancient_damagecorrection) {
             BINNING(
-                BINNING_PREPARATION.out.grouped_mappings.join(ANCIENT_DNA_ASSEMBLY_VALIDATION.out.contigs_recalled).map { it -> [it[0], it[4], it[2], it[3]] },
+                BINNING_PREPARATION.out.grouped_mappings.join(ANCIENT_DNA_ASSEMBLY_VALIDATION.out.contigs_recalled).map { meta, _contigs, bams, bais, corrected_contigs ->
+                    [meta, corrected_contigs, bams, bais]
+                },
                 params.bin_min_size,
                 params.bin_max_size,
             )
@@ -388,14 +397,17 @@ workflow MAG {
         * Bin QC subworkflows: for checking bin completeness with either BUSCO, CHECKM, CHECKM2, and/or GUNC
         */
 
-        ch_bin_qc_summary = Channel.empty()
+        ch_bin_qc_summary = channel.empty()
         if (!params.skip_binqc) {
             BIN_QC(ch_input_for_postbinning)
             ch_versions = ch_versions.mix(BIN_QC.out.versions)
-            ch_bin_qc_summary = BIN_QC.out.qc_summary
+            ch_bin_qc_summary = BIN_QC.out.qc_summaries
+            ch_busco_summary = BIN_QC.out.busco_summary
+            ch_checkm_summary = BIN_QC.out.checkm_summary
+            ch_checkm2_summary = BIN_QC.out.checkm2_summary
         }
 
-        ch_quast_bins_summary = Channel.empty()
+        ch_quast_bins_summary = channel.empty()
         if (!params.skip_quast) {
             ch_input_for_quast_bins = ch_input_for_postbinning
                 .groupTuple()
@@ -418,7 +430,7 @@ workflow MAG {
         /*
          * CATPACK: bin / contig taxonomic classification
          */
-        ch_catpack_summary = Channel.empty()
+        ch_catpack_summary = channel.empty()
         if (params.cat_db || params.cat_db_generate) {
             CATPACK(
                 ch_input_for_postbinning_bins,
@@ -434,7 +446,7 @@ workflow MAG {
          */
 
         if (!params.skip_gtdbtk) {
-            ch_gtdbtk_summary = Channel.empty()
+            ch_gtdbtk_summary = channel.empty()
             if (gtdb) {
 
                 ch_gtdb_bins = ch_input_for_postbinning.filter { meta, _bins ->
@@ -445,14 +457,13 @@ workflow MAG {
                     ch_gtdb_bins,
                     ch_bin_qc_summary,
                     gtdb,
-                    gtdb_mash,
                 )
                 ch_versions = ch_versions.mix(GTDBTK.out.versions)
                 ch_gtdbtk_summary = GTDBTK.out.summary
             }
         }
         else {
-            ch_gtdbtk_summary = Channel.empty()
+            ch_gtdbtk_summary = channel.empty()
         }
 
         if (params.ancient_dna) {
@@ -466,12 +477,13 @@ workflow MAG {
         if ((!params.skip_binqc) || !params.skip_quast || !params.skip_gtdbtk) {
             BIN_SUMMARY(
                 ch_input_for_binsummary,
-                ch_bin_qc_summary.ifEmpty([]),
                 ch_quast_bins_summary.ifEmpty([]),
                 ch_gtdbtk_summary.ifEmpty([]),
                 ch_catpack_summary.ifEmpty([]),
+                ch_busco_summary.ifEmpty([]),
+                ch_checkm_summary.ifEmpty([]),
+                ch_checkm2_summary.ifEmpty([]),
                 ch_summarisepydamage.ifEmpty([]),
-                params.binqc_tool,
             )
             ch_versions = ch_versions.mix(BIN_SUMMARY.out.versions)
         }
@@ -531,29 +543,29 @@ workflow MAG {
     //
     // MODULE: MultiQC
     //
-    ch_multiqc_config = Channel.fromPath(
+    ch_multiqc_config = channel.fromPath(
         "${projectDir}/assets/multiqc_config.yml",
         checkIfExists: true
     )
     ch_multiqc_custom_config = params.multiqc_config
-        ? Channel.fromPath(params.multiqc_config, checkIfExists: true)
-        : Channel.empty()
+        ? channel.fromPath(params.multiqc_config, checkIfExists: true)
+        : channel.empty()
     ch_multiqc_logo = params.multiqc_logo
-        ? Channel.fromPath(params.multiqc_logo, checkIfExists: true)
-        : Channel.fromPath("${workflow.projectDir}/docs/images/mag_logo_mascot_light.png", checkIfExists: true)
+        ? channel.fromPath(params.multiqc_logo, checkIfExists: true)
+        : channel.fromPath("${workflow.projectDir}/docs/images/mag_logo_mascot_light.png", checkIfExists: true)
 
     summary_params = paramsSummaryMap(
         workflow,
         parameters_schema: "nextflow_schema.json"
     )
-    ch_workflow_summary = Channel.value(paramsSummaryMultiqc(summary_params))
+    ch_workflow_summary = channel.value(paramsSummaryMultiqc(summary_params))
     ch_multiqc_files = ch_multiqc_files.mix(
         ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml')
     )
     ch_multiqc_custom_methods_description = params.multiqc_methods_description
         ? file(params.multiqc_methods_description, checkIfExists: true)
         : file("${projectDir}/assets/methods_description_template.yml", checkIfExists: true)
-    ch_methods_description = Channel.value(
+    ch_methods_description = channel.value(
         methodsDescriptionText(ch_multiqc_custom_methods_description)
     )
 
@@ -578,9 +590,8 @@ workflow MAG {
     }
 
     if (!params.skip_binning && !params.skip_prokka) {
-        ch_multiqc_files = ch_multiqc_files.mix(PROKKA.out.txt.collect { it[1] }.ifEmpty([]))
+        ch_multiqc_files = ch_multiqc_files.mix(PROKKA.out.txt.collect { _meta, report -> report }.ifEmpty([]))
     }
-
     if (!params.skip_binning && !params.skip_binqc) {
         ch_multiqc_files = ch_multiqc_files.mix(BIN_QC.out.multiqc_files.collect().ifEmpty([]))
     }
