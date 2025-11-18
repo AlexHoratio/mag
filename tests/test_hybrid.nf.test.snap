@@ -339,7 +339,7 @@
             ],
             [
                 "bowtie2_pe_plot.yaml:md5,331d49d9aa0a0ce1a3a8b407b8a49801",
-                "busco_plot_bacteria_odb10.yaml:md5,01df274c84d96f5b40a17be0cafb8bc0",
+                "busco_plot_bacteria_odb10.yaml:md5,da10d6a882b6f7a5e6eca94f415aabff",
                 "fastp-insert-size-plot.yaml:md5,55f97b7830c1395c10c06bf3f4431186",
                 "fastp-seq-content-gc-plot_Read_1_After_filtering.yaml:md5,fb178f8c18fde4ad16d79afe333d481b",
                 "fastp-seq-content-gc-plot_Read_1_Before_filtering.yaml:md5,2f3f9726d97d4f22be3f4ad30ee14173",
@@ -374,19 +374,19 @@
                 "multiqc_bowtie2.yaml:md5,d6a4f1f2e6952801eda62c414c1685cb",
                 "multiqc_bowtie2_bowtie2-1.yaml:md5,d6a4f1f2e6952801eda62c414c1685cb",
                 "multiqc_bowtie2_bowtie2-2.yaml:md5,b5a185109453a80131d7da2cf4d3f2ec",
-                "multiqc_busco.yaml:md5,ebf9afdf16635f3927e84a77d16a157f",
+                "multiqc_busco.yaml:md5,df428a34eda0c1a05aac5cd84a040e08",
                 "multiqc_citations.yaml:md5,49f79471c1620b06da08b1acb97a1e56",
                 "multiqc_fastp.yaml:md5,5d2c6eefa228bc0210be0d017eeb8eda",
                 "multiqc_fastqc.yaml:md5,0d11a6d30d0d1a430e58d44b57ac6e87",
                 "multiqc_fastqc_fastqc-1.yaml:md5,0b8c8b4edb4f3e70409f30bcdda54397",
-                "multiqc_general_stats.yaml:md5,11da7fff5eae27eb57e82b837ce5f339",
-                "multiqc_prokka.yaml:md5,c326e90ea1bd7ac2f91aff5433be0d3d",
+                "multiqc_general_stats.yaml:md5,edb4f404e32d372bd387a90b72575087",
+                "multiqc_prokka.yaml:md5,b994dcc420bd2f85d4e0f91549e08b54",
                 "multiqc_quast.yaml:md5,e5940a0ce6af05da51fe94bc6d7d3901",
-                "multiqc_quast_quast-1.yaml:md5,c5e23b1f813592ec5d36449703cd7ef3",
+                "multiqc_quast_quast-1.yaml:md5,b20f16ccd1d9395ecac0ceee2cbe78de",
                 "porechop.yaml:md5,828d96e2822bb4b4108ab706c00c4450",
-                "prokka_plot.yaml:md5,8da8725de67e34bb0298734ac37dd935",
-                "quast_num_contigs.yaml:md5,ed5cff77e6552526beade397a8105bac",
-                "quast_table.yaml:md5,4662732c47cc02c8a2fe655ef974210d"
+                "prokka_plot.yaml:md5,c095a60a9936134ec73e6667a5635bbe",
+                "quast_num_contigs.yaml:md5,ddc54b8fb069f419547237c52e3058f2",
+                "quast_table.yaml:md5,e5720e81c420f07480481ac3c75bb822"
             ]
         ],
         "meta": {
