@@ -1,10 +1,13 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "summarisepydamage"
-description: write your description here
+description: Summarises damage parameter estimation for ancient DNA by pyDamage across bins
 keywords:
-  - sort
-  - example
-  - genomics
+  - bins
+  - metrics
+  - quality control
+  - pydamage
+  - ancient DNA
+  - damage
 tools:
   - "summarisepydamage":
       description: "Processing script for summarising damage parameter estimation for ancient DNA by pyDamage."
@@ -27,18 +30,18 @@ input:
           - edam: "http://edamontology.org/format_3752" # CSV
 
 output:
-  bam:
+  summary_Tsv:
     - - meta:
           type: map
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1' ]`
-      - "*.csv":
+      - "*.tsv":
           type: file
-          description: Summarised CSV calculating median values across all contigs
-          pattern: "*.csv"
+          description: Summarised TSV calculating median values across all contigs
+          pattern: "*.tsv"
           ontologies:
-            - edam: "http://edamontology.org/format_3752" # CSV
+            - edam: "http://edamontology.org/format_3475" # TSV
 
   versions:
     - "versions.yml":

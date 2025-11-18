@@ -4,7 +4,6 @@
 ## See git repository (https://github.com/nf-core/mag) for full license text.
 
 import argparse
-from email import parser
 import sys
 import warnings
 

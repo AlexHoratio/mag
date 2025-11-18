@@ -10,7 +10,7 @@ workflow PYDAMAGE_BINS {
     ch_input_for_postbinning
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     // Get sample ID for each contig (record header)
     ch_contig_bin_assignments = ch_input_for_postbinning.transpose()
@@ -40,7 +40,7 @@ workflow PYDAMAGE_BINS {
         .map { bin_id, data ->
             // Process your data to create CSV content
             def header = data[0].keySet().join(',')
-            def rows = data.collect { it.values().join(',') }.join('\n')
+            def rows = data.collect { row -> row.values().join(',') }.join('\n')
             def content = header + '\n' + rows
             [bin_id, content]
         }
@@ -77,7 +77,7 @@ workflow PYDAMAGE_BINS {
             // Get keys of first row to act as header
             def header = contents[0][0].keySet().join('\t')
             // Get values of remaining rows for cells
-            def rows = contents.collect { it[0].values().join('\t') }.join('\n')
+            def rows = contents.collect { row -> row[0].values().join('\t') }.join('\n')
             header + '\n' + rows
         }
         .collectFile(

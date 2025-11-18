@@ -3,6 +3,7 @@
 ## summarise_pydamage.py
 ## Originally written by James Fellows Yates and released under the MIT license.
 ## See git repository (https://github.com/nf-core/mag) for full license text.
+## Some contributions from GitHub Copilot
 
 import os
 import sys

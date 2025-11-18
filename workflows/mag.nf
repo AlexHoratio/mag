@@ -42,7 +42,7 @@ include { QUAST                           } from '../modules/local/quast_run/mai
 include { QUAST_BINS                      } from '../modules/local/quast_bins/main'
 include { QUAST_BINS_SUMMARY              } from '../modules/local/quast_bins_summary/main'
 include { BIN_SUMMARY                     } from '../modules/local/bin_summary/main'
-include { PYDAMAGE_BINS                   } from '../subworkflows/local/PYDAMAGE_BINS/main'
+include { PYDAMAGE_BINS                   } from '../subworkflows/local/pydamage_bins/main'
 
 workflow MAG {
     take:
@@ -471,7 +471,7 @@ workflow MAG {
             ch_summarisepydamage = PYDAMAGE_BINS.out.tsv
         }
         else {
-            ch_summarisepydamage = Channel.empty()
+            ch_summarisepydamage = channel.empty()
         }
 
         if ((!params.skip_binqc) || !params.skip_quast || !params.skip_gtdbtk) {
