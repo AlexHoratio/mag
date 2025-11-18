@@ -20,9 +20,6 @@ def parse_args(args=None):
         help="Bin depths summary file.",
     )
     parser.add_argument(
-        "-b", "--binqc_summary", metavar="FILE", help="BUSCO summary file."
-    )
-    parser.add_argument(
         "-q", "--quast_summary", metavar="FILE", help="QUAST BINS summary file."
     )
     parser.add_argument(
