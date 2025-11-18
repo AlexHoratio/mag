@@ -27,15 +27,6 @@ def parse_args(args=None):
     )
     parser.add_argument("-a", "--cat_summary", metavar="FILE", help="CAT table file.")
     parser.add_argument(
-        "-p",
-        "--summarisepydamage_summary",
-        metavar="FILE",
-        help="summarisepydamage table file.",
-    )
-    parser.add_argument(
-        "-g", "--gtdbtk_summary", metavar="FILE", help="GTDB-Tk summary file."
-    )
-    parser.add_argument(
         "-u", "--busco_summary", metavar="FILE", help="BUSCO summary file."
     )
     parser.add_argument(
@@ -44,7 +35,12 @@ def parse_args(args=None):
     parser.add_argument(
         "-e", "--checkm2_summary", metavar="FILE", help="CheckM2 summary file."
     )
-    parser.add_argument("-a", "--cat_summary", metavar="FILE", help="CAT table file.")
+    parser.add_argument(
+        "-p",
+        "--summarisepydamage_summary",
+        metavar="FILE",
+        help="summarisepydamage table file.",
+    )
 
     parser.add_argument(
         "-o",
