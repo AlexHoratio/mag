@@ -6,9 +6,9 @@ nextflow_process {
     process "SUMMARISEPYDAMAGE"
 
     tag "modules"
-    tag "modules_"
+    tag "modules_local"
     tag "summarisepydamage"
-    tag "pydamage_analyze"
+    tag "pydamage/analyze"
 
     setup {
         run('PYDAMAGE_ANALYZE') {

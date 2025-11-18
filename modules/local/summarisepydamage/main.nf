@@ -39,7 +39,7 @@ process SUMMARISEPYDAMAGE {
     """
     echo ${args}
 
-    touch ${prefix}_pydamage_summarised.csv
+    touch ${prefix}_pydamage_summarised.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
