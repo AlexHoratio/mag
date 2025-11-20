@@ -1,0 +1,8 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/environment-schema.json
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bioconda::genomad=1.11.1
+  - conda-forge::rich-click=1.8.9 # temporary fix to prevent wrong geNomad version reported
