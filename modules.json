@@ -143,7 +143,7 @@
                     },
                     "fastp": {
                         "branch": "master",
-                        "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
+                        "git_sha": "d9ec4ef289ad39b8a662a7a12be50409b11df84b",
                         "installed_by": ["modules"]
                     },
                     "fastqc": {
@@ -248,7 +248,7 @@
                     },
                     "multiqc": {
                         "branch": "master",
-                        "git_sha": "af27af1be706e6a2bb8fe454175b0cdf77f47b49",
+                        "git_sha": "82a79183037a403ad1b6714e5dbcff25500efaf6",
                         "installed_by": ["modules"]
                     },
                     "nanolyse": {
