@@ -118,10 +118,10 @@
                     "cp": 9.5
                 },
                 "SAMTOOLS_HOSTREMOVED_INDEX": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_HOSTREMOVED_STATS": {
-                    "samtools": 1.21
+                    "samtools": "1.22.1"
                 },
                 "SAMTOOLS_HOSTREMOVED_UNMAPPED": {
                     "samtools": 1.21
@@ -146,7 +146,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-17T17:34:26.849822259"
+        "timestamp": "2025-11-20T06:31:24.738825401"
     },
     "multiqc": {
         "content": [
