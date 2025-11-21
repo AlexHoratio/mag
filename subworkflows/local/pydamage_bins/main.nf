@@ -41,7 +41,7 @@ workflow PYDAMAGE_BINS {
 
     // Convert contents of the reordered contigs to a CSV file
     // and re-attach the original sample/assembly meta based on bin_id
-    // This also saves the 'reordered' pydamage results to allow inspection 
+    // This also saves the 'reordered' pydamage results to allow inspection
     // with the final summarised stats
     ch_pydamage_to_bins = ch_reordered_pydamage_stats
         .map { bin_id, _full_meta, data ->
