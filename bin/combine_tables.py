@@ -272,6 +272,8 @@ def main(args=None):
             how="outer",
         )
 
+    ## SUMMARISED PYDAMAGE PROCESSING
+
     if args.summarisepydamage_summary:
         summarisepydamage_results = pd.read_csv(
             args.summarisepydamage_summary, sep="\t"
