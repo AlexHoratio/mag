@@ -1,4 +1,4 @@
-process BIGMAG_SUMMARY {
+process BIGMAG {
 
     conda "conda-forge::pandas=1.4.3"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
@@ -8,8 +8,6 @@ process BIGMAG_SUMMARY {
     input:
     path summary
     path gunc_sum
-    path alt_sum
-    val  binqc_tool
 
     output:
     path "bigmag_summary.tsv", emit: bigmag_summary
@@ -19,18 +17,14 @@ process BIGMAG_SUMMARY {
     task.ext.when == null || task.ext.when
 
     script:
-    def args = task.ext.args   ?: ''
     def args = task.ext.args ?: ''
     def summary  = summary.sort().size() > 0 ? "--summary ${summary}" : ""
     def gunc_summary  = gunc_sum.sort().size() > 0 ? "--gunc_summary ${gunc_sum}" : ""
-    def alt_summary = alt_sum.sort().size() > 0 ? "--alt_summary ${alt_sum}" : ""
     """
     bigmag_summary.py \
         ${args} \
         ${summary} \
         ${gunc_summary} \
-        ${alt_summary} \
-        --binqc_tool ${binqc_tool} \
         --out bigmag_summary.tsv
 
     cat <<-END_VERSIONS > versions.yml

@@ -29,6 +29,7 @@ workflow BIN_QC {
     ch_busco_final_summaries = Channel.empty()
     ch_checkm_final_summaries = Channel.empty()
     ch_checkm2_final_summaries = Channel.empty()
+    ch_gunc_summary = Channel.empty()
 
 
     /*
@@ -195,7 +196,7 @@ workflow BIN_QC {
         ch_versions.mix(GUNC_RUN.out.versions)
 
         // Make sure to keep directory in sync with modules.conf
-        GUNC_RUN.out.maxcss_level_tsv
+        ch_gunc_summary = GUNC_RUN.out.maxcss_level_tsv
             .map { _meta, gunc_summary -> gunc_summary }
             .collectFile(
                 name: "gunc_summary.tsv",
@@ -224,6 +225,7 @@ workflow BIN_QC {
     busco_summary   = ch_busco_final_summaries
     checkm_summary  = ch_checkm_final_summaries
     checkm2_summary = ch_checkm2_final_summaries
+    gunc_summary    = ch_gunc_summary
     multiqc_files   = ch_multiqc_files
     versions        = ch_versions
 }

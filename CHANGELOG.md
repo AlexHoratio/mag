@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Added`
 
+- [#861](https://github.com/nf-core/mag/pull/861) - Added `--generate_bigmag_file` to execute the bigmag workflow that generates the file to be used as input for [BIgMAG](https://github.com/jeffe107/BIgMAG) (added by @jeffe107)
 - [#842](https://github.com/nf-core/mag/pull/842) - Add support for running multiple binQC tools in one run using dedicated `--run_busco`, `--run_checkm`, and `--run_checkm2` parameters (by @harper357, with contributions from @dialvarezs, @prototaxites and @jfy133)
 - [#881](https://github.com/nf-core/mag/pull/881) - Add binner MetaBinner (by @d4straub, insprired by @HeshamAlmessady & @AlphaSquad)
 
@@ -65,7 +66,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Added`
 
-- [#861](https://github.com/nf-core/mag/pull/861) - Added `--generate_bigmag_file` to execute the bigmag workflow that generates the file to be used as input for [BIgMAG](https://github.com/jeffe107/BIgMAG) (added by @jeffe107)
 - [#718](https://github.com/nf-core/mag/pull/718) - Add support for independent long-read metagenomic assembly (requested by @ljmesi and many others, added by @muabnezor)
 - [#718](https://github.com/nf-core/mag/pull/718) - Added metaMDBG and (meta)Flye as long read assemblers (added by @muabnezor)
 - [#718](https://github.com/nf-core/mag/pull/718) - Added host removal for long reads using minimap2 as aligner (added by @muabnezor)

@@ -1001,7 +1001,7 @@
                 "generate_bigmag_file": {
                     "type": "boolean",
                     "description": "Make the file bin_summary.tsv suitable for the application BIgMAG.",
-                    "help_text": "If specified, BUSCO, ChecKM2 and GUNC will be executed simultaneously."
+                    "help_text": "It requires --run_gunc and --run_checkm2 to be executed."
                 }
             }
         },

@@ -831,13 +831,13 @@ All columns other than the primary `bin` key column, and the `Depth <sample name
 <details markdown="1">
 <summary>Output files</summary>
 
-- `GenomeBinning/BIgMAG/bigmag_summary.tsv`: Summary of bin sequencing depths together with GUNC, QUAST, GTDB-Tk, BUSCO and CheckM or CheckM2 results.
+- `GenomeBinning/BIgMAG/bigmag_summary.tsv`: Summary of bin sequencing depths together with GUNC, QUAST, GTDB-Tk, BUSCO and CheckM2 results.
 
 </details>
 
 The output file in this directory is suitable to be used as input for the dashboard  [BIgMAG](https://github.com/jeffe107/BIgMAG. 
 
-It is generated through a dedicated subworkflow that takes the file `bin_summary.tsv` as input, and it will additionally execute CheckM2 if BUSCO is the selected quality control tool or BUSCO if CheckM or CheckM2 was specified by the user as the main tool. By default the subworkflow will execute GUNC.
+It is generated through a local module that takes the file `bin_summary.tsv` and the GUNC summary. It requires the parameters `--run_gunc` and `--run_checkm2`, as well as GTDB-Tk2 and BUSCO default execution.
 
 ## Ancient DNA
 
