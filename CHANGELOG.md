@@ -3,6 +3,33 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v5.3.0dev [unreleased]
+
+### `Added`
+
+- [#905](https://github.com/nf-core/mag/pull/905) - Add nf-test snapshot for `test_assembly_input` profile (by @dialvarezs)
+- [#930](https://github.com/nf-core/mag/pull/930) - Add binner SemiBin2 (by @d4straub)
+
+### `Changed`
+
+- [#932](https://github.com/nf-core/mag/pull/932) - Replaced usages of deprecated `Channel()` with `channel()` and fix other LSP warnings (by @dialvarezs)
+- [#937](https://github.com/nf-core/mag/pull/937) - Updated to nf-core 3.5.1 `TEMPLATE` (by @dialvarezs)
+
+### `Fixed`
+
+- [#894](https://github.com/nf-core/mag/pull/894) - Fix read order in metaSPAdes to allow co-assembly of paired-end data of multiple samples (reported by @maartenciers, fix by @jfy133 with contributions from @prototaxites, @d4straub and @dialvarezs)
+- [#927](https://github.com/nf-core/mag/pull/927) - MetaBinner now succeeds when no contigs are too short or all are binned (reported by @MicroSeq, fix by @d4straub)
+- [#929](https://github.com/nf-core/mag/pull/929) - Allow the domain_classification.R script to run with any assembler, not just Megahit or Spades (reported by @MicroSeq, fix by @prototaxites)
+
+### `Dependencies`
+
+| Tool     | Previous version | New version |
+| -------- | ---------------- | ----------- |
+| nf-core  |                  | 3.5.1       |
+| SemiBin2 |                  | 2.2.0       |
+
+### `Deprecated`
+
 ## v5.2.0 - Puce Pangolin [2025-11-07]
 
 ### `Added`

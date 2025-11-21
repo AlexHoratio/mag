@@ -2,6 +2,7 @@ process METABINNER_BINS {
     tag "$meta.id"
     label 'process_low'
 
+    // WARN: Version information not provided by tool on CLI. Please update version string below when bumping container versions.
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/metabinner:1.4.4--hdfd78af_0' :
@@ -12,10 +13,10 @@ process METABINNER_BINS {
     val val_min_contig_size
 
     output:
-    tuple val(meta), path("*.tooShort.fa.gz")         , emit: tooshort
-    tuple val(meta), path("*.unbinned.fa.gz")         , emit: unbinned
-    tuple val(meta), path("bins/*.fa.gz")             , emit: bins
-    path "versions.yml"                               , emit: versions
+    tuple val(meta), path("*.tooShort.fa.gz"), optional: true, emit: tooshort
+    tuple val(meta), path("*.unbinned.fa.gz"), optional: true, emit: unbinned
+    tuple val(meta), path("bins/*.fa.gz")                    , emit: bins
+    path "versions.yml"                                      , emit: versions
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
