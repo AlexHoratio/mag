@@ -108,7 +108,7 @@ workflow TIARA {
 
     ch_bin_classifications = TIARA_CLASSIFY.out.bin_classifications
         .collect { _meta, classification ->
-            [classification]
+            classification
         }
         .map { bin_classifications ->
             [[id: 'tiara'], bin_classifications]
