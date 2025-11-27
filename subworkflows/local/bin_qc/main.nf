@@ -29,7 +29,7 @@ workflow BIN_QC {
     ch_busco_final_summaries = channel.empty()
     ch_checkm_final_summaries = channel.empty()
     ch_checkm2_final_summaries = channel.empty()
-    ch_gunc_summary = Channel.empty()
+    ch_gunc_summary = channel.empty()
 
     /*
     ================================
