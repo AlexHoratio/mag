@@ -112,10 +112,10 @@
                 "multiqc/multiqc_report.html"
             ],
             [
-                "busco_plot_bacteria_odb10.yaml:md5,b9602874259ba8bcb3903136ba26c34e",
-                "multiqc_busco.yaml:md5,7f414ae44f5277a881c7ae86bac13ab6",
+                "busco_plot_bacteria_odb10.yaml:md5,61ea14a5ac60fa3b48ee832af75effff",
+                "multiqc_busco.yaml:md5,0a1896fc18fdea30852125167730c8c5",
                 "multiqc_citations.yaml:md5,cd0615b89829a041bc2a33cdb69b585b",
-                "multiqc_general_stats.yaml:md5,29514b760bf201d07e47885543807eb8",
+                "multiqc_general_stats.yaml:md5,fbf8803248aa40052113485a7bfbb8d0",
                 "porechop.yaml:md5,828d96e2822bb4b4108ab706c00c4450"
             ]
         ],
@@ -123,6 +123,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-27T11:30:05.219677194"
+        "timestamp": "2025-11-27T13:31:05.010588102"
     }
 }
