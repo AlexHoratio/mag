@@ -398,7 +398,7 @@ def validateInputParameters(hybrid) {
     }
 
     // Check BIgMAG parameters
-    if (params.generate_bigmag_file && !params.run_gunc && !params.run_checkm2 && !params.run_busco && params.skip_gtdbtk && params.skip_quast && params.skip_binqc) {
+    if (params.generate_bigmag_file && && (!params.run_gunc || !params.run_checkm2 || !params.run_busco || params.skip_gtdbtk || params.skip_quast || params.skip_binqc)) {
         error('[nf-core/mag] ERROR: To generate the BIgMAG file you need to include the parameters `--run_checkm2` and `--run_gunc`, and you cannot skip BINQC, GTDB-TK, QUAST nor BUSCO.')
     }
 }
