@@ -17,7 +17,7 @@
                     "untar": 1.34
                 },
                 "CONCAT_BUSCO_TSV": {
-                    "csvtk": "0.31.0"
+                    "qsv": "5.1.0"
                 },
                 "CONVERT_DEPTHS": {
                     "bioawk": 20110810
@@ -124,7 +124,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-20T06:33:01.941048802"
+        "timestamp": "2025-11-27T11:34:46.475733493"
     },
     "multiqc": {
         "content": [
