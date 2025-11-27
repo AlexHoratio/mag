@@ -475,7 +475,7 @@ workflow MAG {
             )
             ch_versions = ch_versions.mix(BIN_SUMMARY.out.versions)
         }
-        if (params.generate_bigmag_file && !params.skip_binqc && params.run_gunc && params.run_checkm2 && params.run_busco && !params.skip_gtdbtk && !params.skip_quast) {
+        if (params.generate_bigmag_file ) {
             BIGMAG(
                    BIN_SUMMARY.out.summary,
                    BIN_QC.out.gunc_summary
