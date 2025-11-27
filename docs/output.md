@@ -854,7 +854,8 @@ All columns other than the primary `bin` key column, and the `Depth <sample name
 
 The output file in this directory is suitable to be used as input for the dashboard [BIgMAG](https://github.com/jeffe107/BIgMAG.
 
-It is generated through a local module that takes the file `bin_summary.tsv` and the GUNC summary. It requires the parameters `--run_gunc` and `--run_checkm2`, as well as GTDB-Tk2 and BUSCO default execution.
+It is generated through a module that uses the file `bin_summary.tsv` and the GUNC summary.
+It requires the parameters `--run_gunc` and `--run_checkm2`, as well as GTDB-Tk2 and BUSCO default execution.
 
 ## Ancient DNA
 
