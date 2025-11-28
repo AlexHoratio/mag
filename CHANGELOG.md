@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [#929](https://github.com/nf-core/mag/pull/929) - Allow the domain_classification.R script to run with any assembler, not just Megahit or Spades (reported by @MicroSeq, fix by @prototaxites)
 - [#943](https://github.com/nf-core/mag/pull/943) - Fixed concatenation of BUSCO summaries with uneven columns by changing from `csvtk` to `qsv` (reported by @jfy133 and @julianu, fix by @dialvarezs)
 - [#943](https://github.com/nf-core/mag/pull/943) - Fixed creation of the Tiara report channel used for concatenation (by @dialvarezs)
+- [#945](https://github.com/nf-core/mag/pull/945) - Skip mixing of GTDB-Tk MultiQC files when binning is skipped (reported by @amizeranschi, fix by @dialvarezs)
 
 ### `Dependencies`
 
