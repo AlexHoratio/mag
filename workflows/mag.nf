@@ -603,15 +603,18 @@ workflow MAG {
         ch_multiqc_files = ch_multiqc_files.mix(BINNING_PREPARATION.out.multiqc_files.collect().ifEmpty([]))
     }
 
-    if (!params.skip_binning && !params.skip_prokka) {
-        ch_multiqc_files = ch_multiqc_files.mix(PROKKA.out.txt.collect { _meta, report -> report }.ifEmpty([]))
-    }
-    if (!params.skip_binning && !params.skip_binqc) {
-        ch_multiqc_files = ch_multiqc_files.mix(BIN_QC.out.multiqc_files.collect().ifEmpty([]))
-    }
+    if (!params.skip_binning) {
+        if (!params.skip_prokka) {
+            ch_multiqc_files = ch_multiqc_files.mix(PROKKA.out.txt.collect { _meta, report -> report }.ifEmpty([]))
+        }
 
-    if (!params.skip_gtdbtk) {
-        ch_multiqc_files = ch_multiqc_files.mix(GTDBTK.out.multiqc_files.collect().ifEmpty([]))
+        if (!params.skip_binqc) {
+            ch_multiqc_files = ch_multiqc_files.mix(BIN_QC.out.multiqc_files.collect().ifEmpty([]))
+        }
+
+        if (!params.skip_gtdbtk) {
+            ch_multiqc_files = ch_multiqc_files.mix(GTDBTK.out.multiqc_files.collect().ifEmpty([]))
+        }
     }
 
     MULTIQC(
