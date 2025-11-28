@@ -40,6 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Deprecated`
 
+- [#943](https://github.com/nf-core/mag/pull/943) - Remove `csvtk/concat` module (by @dialvarezs).
+
 ## v5.2.0 - Puce Pangolin [2025-11-07]
 
 ### `Added`
