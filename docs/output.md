@@ -854,7 +854,6 @@ All columns other than the primary `bin` key column, and the `Depth <sample name
 
 The output file in this directory is used as input for the dashboard [BIgMAG](https://github.com/jeffe107/BIgMAG) for visualisation and evaluation of MAG quality.
 
-
 ## Ancient DNA
 
 Optional, only running when parameter `-profile ancient_dna` is specified.
