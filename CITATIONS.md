@@ -94,7 +94,7 @@
 
   > Orakov, A., Fullam, A., Coelho, A. P., Khedkar, S., Szklarczyk, D., Mende, D. R., Schmidt, T. S. B., and Bork, P.. 2021. “GUNC: Detection of Chimerism and Contamination in Prokaryotic Genomes.” Genome Biology 22 (1): 178. doi: 10.1186/s13059-021-02393-0.
 
-- [MAGFlow/BIgMAG](https://doi.org/10.12688/f1000research.152290.2)
+- [BIgMAG](https://doi.org/10.12688/f1000research.152290.2)
 
   > Yepes-García, J., Falquet, L. (2024). Metagenome quality metrics and taxonomical annotation visualization through the integration of MAGFlow and BIgMAG. F1000Research 13:640. doi.org/10.12688/f1000research.152290.2
 
