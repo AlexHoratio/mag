@@ -1030,7 +1030,7 @@
                 },
                 "generate_bigmag_file": {
                     "type": "boolean",
-                    "description": "Make a BIgMAG input file including GUNC results .",
+                    "description": "Make a BIgMAG input file including GUNC results.",
                     "help_text": "It requires --run_gunc and --run_checkm2 to be executed. BINQC, GTDB-TK, QUAST nor BUSCO can't be skipped."
                 }
             }
