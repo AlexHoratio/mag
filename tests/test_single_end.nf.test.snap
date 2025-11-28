@@ -64,7 +64,7 @@
                     "untar": 1.34
                 },
                 "CONCAT_CHECKM_TSV": {
-                    "csvtk": "0.31.0"
+                    "qsv": "5.1.0"
                 },
                 "CONCOCT_CONCOCT": {
                     "concoct": "1.1.0"
@@ -180,7 +180,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-20T06:33:51.448501694"
+        "timestamp": "2025-11-27T11:48:18.977628229"
     },
     "multiqc": {
         "content": [
@@ -373,6 +373,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-20T08:08:25.158079231"
+        "timestamp": "2025-11-27T11:48:19.003800949"
     }
 }
