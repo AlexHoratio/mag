@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [#905](https://github.com/nf-core/mag/pull/905) - Add nf-test snapshot for `test_assembly_input` profile (by @dialvarezs)
 - [#930](https://github.com/nf-core/mag/pull/930) - Add binner SemiBin2 (by @d4straub)
+- [#861](https://github.com/nf-core/mag/pull/861) - Added `--generate_bigmag_file` to execute the bigmag workflow that generates the file to be used as input for [BIgMAG](https://github.com/jeffe107/BIgMAG) (added by @jeffe107)
 
 ### `Changed`
 
@@ -42,7 +43,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Added`
 
-- [#861](https://github.com/nf-core/mag/pull/861) - Added `--generate_bigmag_file` to execute the bigmag workflow that generates the file to be used as input for [BIgMAG](https://github.com/jeffe107/BIgMAG) (added by @jeffe107)
 - [#842](https://github.com/nf-core/mag/pull/842) - Add support for running multiple binQC tools in one run using dedicated `--run_busco`, `--run_checkm`, and `--run_checkm2` parameters (by @harper357, with contributions from @dialvarezs, @prototaxites and @jfy133)
 - [#881](https://github.com/nf-core/mag/pull/881) - Add binner MetaBinner (by @d4straub, insprired by @HeshamAlmessady & @AlphaSquad)
 
