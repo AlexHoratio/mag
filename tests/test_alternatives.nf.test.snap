@@ -240,7 +240,7 @@
                 "MEGAHIT-MetaBAT2-prokarya-unrefined-group-0_checkm2_report.tsv:md5,ec01903b7f8a7203856a35a7bd2d4c34",
                 "checkm2_summary.tsv:md5,ec01903b7f8a7203856a35a7bd2d4c34",
                 "tiara_summary.tsv:md5,4cbfb0fd90ba48dc33d75d10c1eddb17",
-                "bin_summary.tsv:md5,e6a07c3280c6db0f7822688559afb053",
+                "bin_summary.tsv:md5,cf879345b96d29b5b8584795504b81cf",
                 "bin_depths_summary.tsv:md5,a73f2fc180a2c52038c88fbbfa6a95c3"
             ]
         ],
@@ -248,7 +248,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-16T01:37:18.534799185"
+        "timestamp": "2025-11-28T14:15:43.756748108"
     },
     "multiqc": {
         "content": [

@@ -42,6 +42,7 @@ include { QUAST                           } from '../modules/local/quast_run/mai
 include { QUAST_BINS                      } from '../modules/local/quast_bins/main'
 include { QUAST_BINS_SUMMARY              } from '../modules/local/quast_bins_summary/main'
 include { BIN_SUMMARY                     } from '../modules/local/bin_summary/main'
+include { BIGMAG                          } from '../modules/local/bigmag/main'
 
 workflow MAG {
     take:
@@ -473,6 +474,14 @@ workflow MAG {
                 ch_checkm2_summary.ifEmpty([]),
             )
             ch_versions = ch_versions.mix(BIN_SUMMARY.out.versions)
+        }
+        if (params.generate_bigmag_file ) {
+            BIGMAG(
+                   BIN_SUMMARY.out.summary,
+                   BIN_QC.out.gunc_summary
+                   )
+            ch_bigmag_summary = BIGMAG.out.bigmag_summary
+            ch_versions = ch_versions.mix(BIGMAG.out.versions)
         }
 
         /*

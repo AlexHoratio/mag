@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [#905](https://github.com/nf-core/mag/pull/905) - Add nf-test snapshot for `test_assembly_input` profile (by @dialvarezs)
 - [#930](https://github.com/nf-core/mag/pull/930) - Add binner SemiBin2 (by @d4straub)
+- [#861](https://github.com/nf-core/mag/pull/861) - Added `--generate_bigmag_file` to execute the bigmag workflow that generates the file to be used as input for [BIgMAG](https://github.com/jeffe107/BIgMAG) (added by @jeffe107)
 
 ### `Changed`
 
