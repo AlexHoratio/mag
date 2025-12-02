@@ -1,4 +1,4 @@
-process BIGMAG {
+process PREPARE_BIGMAG_SUMMARY {
 
     conda "conda-forge::pandas=1.4.3"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
@@ -18,10 +18,10 @@ process BIGMAG {
 
     script:
     def args = task.ext.args ?: ''
-    def summary  = summary.sort().size() > 0 ? "--summary ${summary}" : ""
+    summary  = summary.sort().size() > 0 ? "--summary ${summary}" : ""
     def gunc_summary  = gunc_sum.sort().size() > 0 ? "--gunc_summary ${gunc_sum}" : ""
     """
-    bigmag_summary.py \
+    prepare_bigmag_summary.py \
         ${args} \
         ${summary} \
         ${gunc_summary} \

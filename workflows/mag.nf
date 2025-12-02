@@ -42,11 +42,11 @@ include { QUAST                           } from '../modules/local/quast_run/mai
 include { QUAST_BINS                      } from '../modules/local/quast_bins/main'
 include { QUAST_BINS_SUMMARY              } from '../modules/local/quast_bins_summary/main'
 include { BIN_SUMMARY                     } from '../modules/local/bin_summary/main'
-include { BIGMAG                          } from '../modules/local/bigmag/main'
+include { PREPARE_BIGMAG_SUMMARY          } from '../modules/local/bigmag_summary/main'
 
 workflow MAG {
     take:
-    ch_raw_short_reads  // channel: samplesheet read in from --input
+    ch_raw_short_reads // channel: samplesheet read in from --input
     ch_raw_long_reads
     ch_input_assemblies
 
@@ -278,10 +278,10 @@ workflow MAG {
         if (params.ancient_dna && !params.skip_ancient_damagecorrection) {
             BINNING(
                 BINNING_PREPARATION.out.grouped_mappings
-                    .join(ANCIENT_DNA_ASSEMBLY_VALIDATION.out.contigs_recalled)
-                    .map { meta, _contigs, bams, bais, corrected_contigs ->
-                        [meta, corrected_contigs, bams, bais]
-                    },
+                .join(ANCIENT_DNA_ASSEMBLY_VALIDATION.out.contigs_recalled)
+                .map { meta, _contigs, bams, bais, corrected_contigs ->
+                    [meta, corrected_contigs, bams, bais]
+                },
                 params.bin_min_size,
                 params.bin_max_size,
             )
@@ -475,13 +475,12 @@ workflow MAG {
             )
             ch_versions = ch_versions.mix(BIN_SUMMARY.out.versions)
         }
-        if (params.generate_bigmag_file ) {
-            BIGMAG(
-                   BIN_SUMMARY.out.summary,
-                   BIN_QC.out.gunc_summary
-                   )
-            ch_bigmag_summary = BIGMAG.out.bigmag_summary
-            ch_versions = ch_versions.mix(BIGMAG.out.versions)
+        if (params.generate_bigmag_file) {
+            PREPARE_BIGMAG_SUMMARY(
+                BIN_SUMMARY.out.summary,
+                BIN_QC.out.gunc_summary,
+            )
+            ch_versions = ch_versions.mix(PREPARE_BIGMAG_SUMMARY.out.versions)
         }
 
         /*
@@ -535,9 +534,9 @@ workflow MAG {
 
     def topic_versions_string = topic_versions.versions_tuple
         .map { process, tool, version ->
-            [ process[process.lastIndexOf(':')+1..-1], "  ${tool}: ${version}" ]
+            [process[process.lastIndexOf(':') + 1..-1], "  ${tool}: ${version}"]
         }
-        .groupTuple(by:0)
+        .groupTuple(by: 0)
         .map { process, tool_versions ->
             tool_versions.unique().sort()
             "${process}:\n${tool_versions.join('\n')}"
