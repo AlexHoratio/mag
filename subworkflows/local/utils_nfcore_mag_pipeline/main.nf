@@ -372,8 +372,14 @@ def validateInputParameters(hybrid) {
         }
     }
 
-    if (params.skip_binqc && !params.skip_gtdbtk) {
-        log.warn('[nf-core/mag]: --skip_binqc is specified, but --skip_gtdbtk is explictly set to run! GTDB-tk will be omitted because GTDB-tk bin classification requires bin filtering based on BUSCO or CheckM QC results to avoid GTDB-tk errors.')
+    if (!params.skip_gtdbtk) {
+        if (params.skip_binqc) {
+            log.warn('[nf-core/mag]: --skip_binqc is specified, but --skip_gtdbtk is explictly set to run! GTDB-tk will be omitted because GTDB-tk bin classification requires bin filtering based on BUSCO or CheckM QC results to avoid GTDB-tk errors.')
+        }
+
+        if (params.skip_busco && params.run_checkm && !params.run_checkm2) {
+            log.warn('[nf-core/mag]: GTDB-tk requires bin quality information from BUSCO, CheckM or CheckM2. Please enable at least one of these tools, otherwise GTDB-tk will be skipped.')
+        }
     }
 
     // Check if CAT parameters are valid
