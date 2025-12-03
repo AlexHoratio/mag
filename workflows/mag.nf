@@ -42,6 +42,7 @@ include { QUAST                           } from '../modules/local/quast_run/mai
 include { QUAST_BINS                      } from '../modules/local/quast_bins/main'
 include { QUAST_BINS_SUMMARY              } from '../modules/local/quast_bins_summary/main'
 include { BIN_SUMMARY                     } from '../modules/local/bin_summary/main'
+include { PREPARE_BIGMAG_SUMMARY          } from '../modules/local/bigmag_summary/main'
 include { PYDAMAGE_BINS                   } from '../subworkflows/local/pydamage_bins/main'
 
 workflow MAG {
@@ -487,6 +488,13 @@ workflow MAG {
             )
             ch_versions = ch_versions.mix(BIN_SUMMARY.out.versions)
         }
+        if (params.generate_bigmag_file) {
+            PREPARE_BIGMAG_SUMMARY(
+                BIN_SUMMARY.out.summary,
+                BIN_QC.out.gunc_summary,
+            )
+            ch_versions = ch_versions.mix(PREPARE_BIGMAG_SUMMARY.out.versions)
+        }
 
         /*
          * Prokka: Genome annotation
@@ -530,7 +538,7 @@ workflow MAG {
     //
     // Collate and save software versions
     //
-    def topic_versions = Channel.topic("versions")
+    def topic_versions = channel.topic("versions")
         .distinct()
         .branch { entry ->
             versions_file: entry instanceof Path
@@ -539,9 +547,9 @@ workflow MAG {
 
     def topic_versions_string = topic_versions.versions_tuple
         .map { process, tool, version ->
-            [ process[process.lastIndexOf(':')+1..-1], "  ${tool}: ${version}" ]
+            [process[process.lastIndexOf(':') + 1..-1], "  ${tool}: ${version}"]
         }
-        .groupTuple(by:0)
+        .groupTuple(by: 0)
         .map { process, tool_versions ->
             tool_versions.unique().sort()
             "${process}:\n${tool_versions.join('\n')}"
@@ -607,15 +615,18 @@ workflow MAG {
         ch_multiqc_files = ch_multiqc_files.mix(BINNING_PREPARATION.out.multiqc_files.collect().ifEmpty([]))
     }
 
-    if (!params.skip_binning && !params.skip_prokka) {
-        ch_multiqc_files = ch_multiqc_files.mix(PROKKA.out.txt.collect { _meta, report -> report }.ifEmpty([]))
-    }
-    if (!params.skip_binning && !params.skip_binqc) {
-        ch_multiqc_files = ch_multiqc_files.mix(BIN_QC.out.multiqc_files.collect().ifEmpty([]))
-    }
+    if (!params.skip_binning) {
+        if (!params.skip_prokka) {
+            ch_multiqc_files = ch_multiqc_files.mix(PROKKA.out.txt.collect { _meta, report -> report }.ifEmpty([]))
+        }
 
-    if (!params.skip_gtdbtk) {
-        ch_multiqc_files = ch_multiqc_files.mix(GTDBTK.out.multiqc_files.collect().ifEmpty([]))
+        if (!params.skip_binqc) {
+            ch_multiqc_files = ch_multiqc_files.mix(BIN_QC.out.multiqc_files.collect().ifEmpty([]))
+        }
+
+        if (!params.skip_gtdbtk) {
+            ch_multiqc_files = ch_multiqc_files.mix(GTDBTK.out.multiqc_files.collect().ifEmpty([]))
+        }
     }
 
     MULTIQC(
