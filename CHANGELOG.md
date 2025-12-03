@@ -33,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 | Tool     | Previous version | New version |
 | -------- | ---------------- | ----------- |
 | bcftools | 1.21             | 1.22        |
-| csvtk    | 0.31.0           | 5.1.0       |
+| csvtk    | 0.31.0           |             |
 | fastp    | 0.24.0           | 1.0.1       |
 | geNomad  | 1.11.1           | 1.11.2      |
 | metamdbg | 1.1              | 1.2         |
