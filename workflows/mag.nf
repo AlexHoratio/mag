@@ -443,7 +443,7 @@ workflow MAG {
          * GTDB-tk: taxonomic classifications using GTDB reference
          */
 
-        if (!params.skip_gtdbtk && !params.skip_binqc && (!params.skip_busco || params.run_checkm || params.run_checkm2)) {
+        if (!params.skip_gtdbtk && !params.skip_binqc && (params.run_busco || params.run_checkm || params.run_checkm2)) {
             ch_gtdbtk_summary = channel.empty()
             if (gtdb) {
 
