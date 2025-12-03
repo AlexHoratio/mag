@@ -26,7 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [#943](https://github.com/nf-core/mag/pull/943) - Fixed creation of the Tiara report channel used for concatenation (by @dialvarezs)
 - [#945](https://github.com/nf-core/mag/pull/945) - Skip mixing of GTDB-Tk MultiQC files when binning is skipped (reported by @amizeranschi, fix by @dialvarezs)
 - [#953](https://github.com/nf-core/mag/pull/953) - metaSPAdes retries upon error 250 (out of memory), rather than finishing the pipeline.
-- [#945](https://github.com/nf-core/mag/pull/954) - Skip GTDB-Tk when no bin QC tool is enabled and add warning messages (fix by @dialvarezs)
+- [#954](https://github.com/nf-core/mag/pull/954) - Skip GTDB-Tk when no bin QC tool is enabled and add warning messages (fix by @dialvarezs)
+- [#956](https://github.com/nf-core/mag/pull/956) - Support long reads assemblers in assembly input (fix by @dialvarezs)
 
 ### `Dependencies`
 

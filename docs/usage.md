@@ -100,13 +100,13 @@ The assembly CSV file should contain the following columns:
 
 `id,group,assembler,fasta`
 
-Where `id` is the ID of the assembly, group is the assembly/binning group (see samplesheet information section for more details), `assembler` is the assembler used to produce the assembly (one of `MEGAHIT`, `SPAdes`, or `SPAdesHybrid`), and `fasta` is the path to the assembly fasta file. Input fasta files can be compressed or uncompressed, but compressed assemblies will be automatically uncompressed for use within the pipeline. The exact information required for each supplied assembly depends on whether the assemblies provided are single assemblies or group-wise co-assemblies. For the following example `--input` CSV:
+Where `id` is the ID of the assembly, group is the assembly/binning group (see samplesheet information section for more details), `assembler` is the assembler used to produce the assembly (one of `MEGAHIT`, `SPAdes`, `SPAdesHybrid`, `Flye` or `MetaMDBG`), and `fasta` is the path to the assembly fasta file. Input fasta files can be compressed or uncompressed, but compressed assemblies will be automatically uncompressed for use within the pipeline. The exact information required for each supplied assembly depends on whether the assemblies provided are single assemblies or group-wise co-assemblies. For the following example `--input` CSV:
 
 ```csv title="samplesheet.csv"
-sample,group,short_reads_1,short_reads_2,long_reads,short_reads_platform
-sample1,0,data/sample1_R1.fastq.gz,data/sample1_R2.fastq.gz,,ILLUMINA
-sample2,0,data/sample2_R1.fastq.gz,data/sample2_R2.fastq.gz,,ILLUMINA
-sample3,1,data/sample3_R1.fastq.gz,data/sample3_R2.fastq.gz,,ILLUMINA
+sample,group,short_reads_1,short_reads_2,short_reads_platform
+sample1,0,data/sample1_R1.fastq.gz,data/sample1_R2.fastq.gz,ILLUMINA
+sample2,0,data/sample2_R1.fastq.gz,data/sample2_R2.fastq.gz,ILLUMINA
+sample3,1,data/sample3_R1.fastq.gz,data/sample3_R2.fastq.gz,ILLUMINA
 ```
 
 If the assemblies are single assemblies, then the `id` and `group` columns should match those supplied in the `-input` read CSV files for each read set:
