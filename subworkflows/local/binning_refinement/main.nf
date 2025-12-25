@@ -6,6 +6,8 @@ include { DASTOOL_FASTATOCONTIG2BIN as DASTOOL_FASTATOCONTIG2BIN_METABAT2 } from
 include { DASTOOL_FASTATOCONTIG2BIN as DASTOOL_FASTATOCONTIG2BIN_MAXBIN2  } from '../../../modules/nf-core/dastool/fastatocontig2bin/main.nf'
 include { DASTOOL_FASTATOCONTIG2BIN as DASTOOL_FASTATOCONTIG2BIN_CONCOCT  } from '../../../modules/nf-core/dastool/fastatocontig2bin/main.nf'
 include { DASTOOL_FASTATOCONTIG2BIN as DASTOOL_FASTATOCONTIG2BIN_COMEBIN  } from '../../../modules/nf-core/dastool/fastatocontig2bin/main.nf'
+include { DASTOOL_FASTATOCONTIG2BIN as DASTOOL_FASTATOCONTIG2BIN_METABINNER } from '../../../modules/nf-core/dastool/fastatocontig2bin/main.nf'
+include { DASTOOL_FASTATOCONTIG2BIN as DASTOOL_FASTATOCONTIG2BIN_SEMIBIN2  } from '../../../modules/nf-core/dastool/fastatocontig2bin/main.nf'
 include { DASTOOL_DASTOOL                                                 } from '../../../modules/nf-core/dastool/dastool/main.nf'
 
 include { RENAME_PREDASTOOL                                               } from '../../../modules/local/dastool_rename_pre/main'
@@ -41,6 +43,8 @@ workflow BINNING_REFINEMENT {
         maxbin2: meta.binner == 'MaxBin2'
         concoct: meta.binner == 'CONCOCT'
         comebin: meta.binner == 'COMEBin'
+        metabinner: meta.binner == 'MetaBinner'
+        semibin2: meta.binner == 'SemiBin2'
     }
     ch_versions = ch_versions.mix(RENAME_PREDASTOOL.out.versions)
 
@@ -59,6 +63,12 @@ workflow BINNING_REFINEMENT {
     DASTOOL_FASTATOCONTIG2BIN_COMEBIN(ch_bins_for_fastatocontig2bin.comebin, "fa")
     ch_versions = ch_versions.mix(DASTOOL_FASTATOCONTIG2BIN_COMEBIN.out.versions)
 
+    DASTOOL_FASTATOCONTIG2BIN_METABINNER(ch_bins_for_fastatocontig2bin.metabinner, "fa")
+    ch_versions = ch_versions.mix(DASTOOL_FASTATOCONTIG2BIN_METABINNER.out.versions)
+
+    DASTOOL_FASTATOCONTIG2BIN_SEMIBIN2(ch_bins_for_fastatocontig2bin.SEMIBIN2, "fa")
+    ch_versions = ch_versions.mix(DASTOOL_FASTATOCONTIG2BIN_SEMIBIN2.out.versions)
+
     // Run DASTOOL
     ch_fastatocontig2bin_for_dastool = channel.empty()
     ch_fastatocontig2bin_for_dastool = ch_fastatocontig2bin_for_dastool
@@ -66,6 +76,8 @@ workflow BINNING_REFINEMENT {
         .mix(DASTOOL_FASTATOCONTIG2BIN_MAXBIN2.out.fastatocontig2bin)
         .mix(DASTOOL_FASTATOCONTIG2BIN_CONCOCT.out.fastatocontig2bin)
         .mix(DASTOOL_FASTATOCONTIG2BIN_COMEBIN.out.fastatocontig2bin)
+        .mix(DASTOOL_FASTATOCONTIG2BIN_METABINNER.out.fastatocontig2bin)
+        .mix(DASTOOL_FASTATOCONTIG2BIN_SEMIBIN2.out.fastatocontig2bin)
         .map { meta, fastatocontig2bin ->
             def meta_new = meta - meta.subMap('binner')
             [meta_new, fastatocontig2bin]
